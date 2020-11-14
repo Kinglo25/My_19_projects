@@ -8,21 +8,21 @@ SRCS			=	ft_isalnum.c ft_isprint.c ft_memcmp.c ft_putchar_fd.c ft_split.c \
 					ft_toupper.c ft_calloc.c ft_isdigit.c ft_memchr.c ft_memset.c  \
 					ft_putstr_fd.c ft_strjoin.c ft_strmapi.c ft_strtrim.c
 
-OBJS			=	$(SRCS:.c=.o)
+OBJS			=	$(SRCS:c=o)
 
-#BONUS_SRCS		=	ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
+BONUS_SRCS		=	ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
 					ft_lstdelone.c ft_lstiter.c ft_lstlast.c \
 					ft_lstmap.c ft_lstnew.c ft_lstsize.c
 
-#BONUS_OBJS		=	$(BONUS:c=o)
+BONUS_OBJS		=	$(BONUS:c=o)
 
 CC				=	gcc
 
 CFLAGS			=	-Wall -Wextra -Werror
 
 %.o:		%.c
-				@echo "Compiling..."
-				$(CC) $(CFLAGS) -c -I. $< -o $(<:.c=.o)
+				@echo "Compiling $<"
+				@$(CC) $(CFLAGS) -c -I. $< -o $(<:c=o)
 				@echo "Compiling OK!"
 
 all:		$(NAME)
@@ -34,7 +34,7 @@ $(NAME):	$(OBJS)
 
 clean:
 				@echo "Cleaning objects..."
-				@rm -f $(OBJS)
+				@rm -f $(OBJS) $(BONUS_OBJS)
 				@echo "Cleaned up!"
 
 fclean:		clean
@@ -44,10 +44,10 @@ fclean:		clean
 
 re:			fclean all
 
-#bonus:		$(NAME) $(BONUS_OBJS)
-#				@echo "Creating library..." 
-#				@ar -rcs $(NAME) $^
-#				@echo "Job's done!"
+bonus:		$(NAME) $(BONUS_OBJS)
+				@echo "Creating library..." 
+				@ar -rcs $(NAME) $^
+				@echo "Job's done!"
 
 .PHONY:		all clean fclean re 
 
