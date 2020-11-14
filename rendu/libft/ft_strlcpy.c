@@ -16,6 +16,3 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	}
 	return (ft_strlen(src));
 }
-
-
-//try later to do it my way while (s1 == s2)

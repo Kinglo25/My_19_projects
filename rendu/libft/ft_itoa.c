@@ -22,6 +22,8 @@ char		*ft_itoa(int n)
 	ans[n_len--] = '\0';
 	if (n < 0)
 		ans[0] = '-';
+	if (x == 0)
+		ans[0] = '0';
 	while (x)
 	{
 		ans[n_len--] = (char)(x % 10 + 48);
@@ -29,4 +31,3 @@ char		*ft_itoa(int n)
 	}
 	return (ans);
 }
-

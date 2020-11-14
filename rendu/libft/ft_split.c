@@ -25,11 +25,14 @@ static int	find_len_str(char const *s, char c, int i)
 
 	len = 0;
 	while (s[i] && s[i] != c)
-		len++;
+		{
+			i++;
+			len++;
+		}
 	return (len);
 }
 
-static void	fill(char const *s, char c, int nb_str, char **split)
+static int	fill(char const *s, char c, int nb_str, char **split)
 {
 	int		i;
 	int		j;
@@ -37,8 +40,7 @@ static void	fill(char const *s, char c, int nb_str, char **split)
 
 	i = 0;
 	j = 0;
-	k = 0;
-	while (nb_str--)
+	while (nb_str-- && s[i])
 	{
 		while (s[i] == c && s[i])
 			i++;
@@ -47,12 +49,14 @@ static void	fill(char const *s, char c, int nb_str, char **split)
 			while (j--)
 				free(split[j]);
 			free (split);
-			return ;
+			return (42);
 		}
+		k = 0;
 		while (s[i] != c && s[i])
 			split[j][k++] = s[i++];
 		split[j++][k] = '\0';
 	}
+	return (0);
 }
 
 char		**ft_split(char const *s, char c)
@@ -66,6 +70,7 @@ char		**ft_split(char const *s, char c)
 	if (!(split = malloc(sizeof(char*) * (nb_str + 1))))
 		return (NULL);
 	split[nb_str] = NULL;
-	fill(s, c, nb_str, split);
+	if (fill(s, c, nb_str, split))
+		return (NULL);
 	return (split);
 }

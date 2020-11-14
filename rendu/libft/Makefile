@@ -14,22 +14,24 @@ BONUS_SRCS		=	ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
 					ft_lstdelone.c ft_lstiter.c ft_lstlast.c \
 					ft_lstmap.c ft_lstnew.c ft_lstsize.c
 
-BONUS_OBJS		=	$(BONUS:c=o)
+BONUS_OBJS		=	$(BONUS_SRCS:c=o)
 
 CC				=	gcc
 
 CFLAGS			=	-Wall -Wextra -Werror
+
+all:		$(OBJS) $(BONUS_OBJS) $(NAME)
 
 %.o:		%.c
 				@echo "Compiling $<"
 				@$(CC) $(CFLAGS) -c -I. $< -o $(<:c=o)
 				@echo "Compiling OK!"
 
-all:		$(NAME)
-
-$(NAME):	$(OBJS) $(BONUS_OBJS)
+$(NAME):	#$(OBJS) $(BONUS_OBJS)
+#				@echo "Compiling..."
+#				@$(CC) $(CFLAGS) -c -I. $(SRCS)
 				@echo "Creating library..." 
-				@ar -rcs $@ $<
+				@ar -rcs $@ $(OBJS)
 				@echo "Job's done!"
 
 clean:
@@ -44,11 +46,11 @@ fclean:		clean
 
 re:			fclean all
 
-bonus:		$(NAME) $(BONUS_OBJS)
+bonus:		#$(NAME) $(BONUS_OBJS)
+#				@echo "Compiling..."
+#				@$(CC) $(CFLAGS) -c -I. $(BONUS_SRCS)
 				@echo "Creating library..." 
-				@ar -rcs $(NAME) $^
+				@ar -rcs $(NAME) $(BONUS_OBJS)
 				@echo "Job's done!"
 
-.PHONY:		all clean fclean re 
-
-
+.PHONY:		all clean fclean re bonus
