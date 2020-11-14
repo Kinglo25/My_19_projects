@@ -27,9 +27,7 @@ all:		$(OBJS) $(BONUS_OBJS) $(NAME)
 				@$(CC) $(CFLAGS) -c -I. $< -o $(<:c=o)
 				@echo "Compiling OK!"
 
-$(NAME):	#$(OBJS) $(BONUS_OBJS)
-#				@echo "Compiling..."
-#				@$(CC) $(CFLAGS) -c -I. $(SRCS)
+$(NAME):
 				@echo "Creating library..." 
 				@ar -rcs $@ $(OBJS)
 				@echo "Job's done!"
@@ -46,9 +44,7 @@ fclean:		clean
 
 re:			fclean all
 
-bonus:		#$(NAME) $(BONUS_OBJS)
-#				@echo "Compiling..."
-#				@$(CC) $(CFLAGS) -c -I. $(BONUS_SRCS)
+bonus:
 				@echo "Creating library..." 
 				@ar -rcs $(NAME) $(BONUS_OBJS)
 				@echo "Job's done!"
