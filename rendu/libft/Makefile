@@ -27,7 +27,7 @@ CFLAGS			=	-Wall -Wextra -Werror
 
 all:		$(NAME)
 
-$(NAME):	$(OBJS)
+$(NAME):	$(OBJS) $(BONUS_OBJS)
 				@echo "Creating library..." 
 				@ar -rcs $@ $<
 				@echo "Job's done!"
