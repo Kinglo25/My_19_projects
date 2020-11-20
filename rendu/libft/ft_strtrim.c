@@ -21,6 +21,8 @@ char		*ft_strtrim(char const *s1, char const *set)
 	int		i;
 	char	*new;
 
+	if (!s1 || !set)
+		return (NULL);
 	start = 0;
 	i = 0;
 	end = ft_strlen(s1);

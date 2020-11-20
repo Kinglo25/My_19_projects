@@ -5,6 +5,8 @@ char *ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	char	*new;
 	int		i;
 
+	if (!s)
+		return (NULL);
 	if (!(new = ft_strdup(s)))
 		return (NULL);
 	i = 0;

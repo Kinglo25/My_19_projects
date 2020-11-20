@@ -10,6 +10,8 @@ SRCS			=	ft_isalnum.c ft_isprint.c ft_memcmp.c ft_putchar_fd.c ft_split.c \
 
 OBJS			=	$(SRCS:c=o)
 
+SONAME 		= libft.so
+
 BONUS_SRCS		=	ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c \
 					ft_lstdelone.c ft_lstiter.c ft_lstlast.c \
 					ft_lstmap.c ft_lstnew.c ft_lstsize.c
@@ -31,6 +33,10 @@ $(NAME):
 				@echo "Creating library..." 
 				@ar -rcs $@ $(OBJS)
 				@echo "Job's done!"
+
+so:
+				gcc -c $(CFLAGS) -fpic $(SRCS) $(BONUS_SRCS)
+				gcc -shared -o $(SONAME) $(OBJS) $(BONUS_OBJS)
 
 clean:
 				@echo "Cleaning objects..."
