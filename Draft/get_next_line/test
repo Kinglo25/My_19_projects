@@ -1,0 +1,29 @@
+123456789
+qsqsdq
+dq
+
+dqd
+qsqsdq
+
+int		main(void)
+{
+	char	*line;
+	int		fd;
+
+	fd = open("test", O_RDONLY);
+	if (fd == -1)
+		return (42);
+	while (get_next_line(fd, &line) == 1)
+	{
+		int i = 0;
+		while (line[i])
+		{
+			printf("[%d]", line[i++]);
+		}
+		
+		free(line);
+	}
+	printf("[%d]\n", line[0]);
+	free(line);
+	close(fd);
+}
