@@ -1,0 +1,61 @@
+When printf processes its arguments, it starts
+printing the characters it finds in the first argument,
+one by one. When it finds a percent it knows it
+has a format specification. It goes to the next argument and uses its value, printing it according to
+that format specification. It then returns to printing
+a character at a time (from the first argument).
+
+%c -> print a single character
+%d -> print a decimal (base 10) number
+%i -> print an integer in base 10
+%s -> print a string of characters
+%u -> print an unsigned decimal (base 10) number
+%x -> print a number in hexidecimal (base 16) uses "abcdef".
+%X -> print a number in hexidecimal (base 16) uses "ABCDEF".
+%% -> print a percent sign (\% also works)
+%p -> print an address in hexadecimal digits.
+
+
+Flag		Meaning																				Default
+
+-			Left align the result within the given field width.									Right align.
+
+0			If width is prefixed by 0, leading zeros are added until the minimum width			No padding.
+			 is reached. If both 0 and - appear, the 0 is ignored. If 0 is specified for 
+ 			an integer format (i, u, x, X, o, d) and a precision specification is also 
+ 			present—for example, %04.d—the 0 is ignored. If 0 is specified for the a or A 
+ 			floating-point format, leading zeros are prepended to the mantissa, after the 
+			 0x or 0X prefix.	
+
+
+
+
+
+
+
+
+The width option -> calcul the length of string or nbr if it's smaller than 
+width then print width - len spaces; while(width-len > 0) print ' '; (dont forget the minus sign for int)
+
+
+
+
+
+
+
+
+
+
+
+
+
+==============BONUS==============
+
+%g -> print a general-format floating-point number
+%f -> print a floating-point number
+%o -> print a number in octal (base 8)
+%e -> print an exponential floating-point number
+
+
+
+

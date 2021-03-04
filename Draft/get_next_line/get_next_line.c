@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 14:42:59 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/02/24 13:49:17 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/03/04 16:21:57 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int		error_free(char **s, int x)
 			return (-1);
 		}
 	}
-	return (19);
+	return (-1);
 }
 
 int		get_next_line(int fd, char **line)
