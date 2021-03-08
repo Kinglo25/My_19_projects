@@ -5,21 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/04 16:57:57 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/03/04 18:15:53 by lmajerus         ###   ########.fr       */
+/*   Created: 2-221/-23/-24 16:57:57 by lmajerus          #+#    #+#             */
+/*   Updated: 2-221/-23/-28 21:35:22 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "ft_printf.h"
 #include <stdio.h>
-
-typedef enum	{false, true} bool;
 
 int		main(void)
 {
-	char *s1;
-	int x = 42;
-	bool m = false;
-
-	s1 = "no it's not fking geek";
-	printf("{%3.3s}\n{%.3d}\n%d\n", s1, x, m);
+	int x = 2;
+	int  b, y;
+	b = printf("printf------> -|%*.*d|-\n", -2, -2, x);
+	y = ft_printf("ft_printf---> -|%*.*d|-\n", -2, -2, x);
+	printf("{%i}\n", b);
+	printf("{%i}\n", y);
 }

@@ -1,37 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   printf_ptr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/27 14:06:29 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/03/07 17:52:44 by lmajerus         ###   ########.fr       */
+/*   Created: 2021/03/08 16:55:00 by lmajerus          #+#    #+#             */
+/*   Updated: 2021/03/08 18:00:53 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int		ft_printf(const char *input, ...)
+int		printf_ptr(unsigned long ptr, t_flags *flags)
 {
-	va_list	args;
-	t_flags	flags;
-	int		i;
 	int		count;
 
-	i = 0;
-	count = 0;
-	va_start(args, input);
-	while (input[i])
+	count = 11;
+	if (flags->bool_minus)
 	{
-		if (input[i] != '%')
+		ft_putchar('0');
+		ft_putchar('x');
+		ft_putnbr_hexa(ptr, false);
+		while (flags->width-- > 11)
 		{
-			ft_putchar(input[i++]);
+			ft_putchar(' ');
 			count++;
 		}
-		else if (input[i++] == '%')
-			count += format_specification(input, &flags, args, &i);
 	}
-	va_end(args);
+	else
+	{
+		while (flags->width-- > 11)
+		{
+			ft_putchar(' ');
+			count++;
+		}
+		ft_putchar('0');
+		ft_putchar('x');
+		ft_putnbr_hexa(ptr, false);
+	}
 	return (count);
 }
