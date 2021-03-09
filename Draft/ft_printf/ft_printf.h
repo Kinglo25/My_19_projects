@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 14:08:39 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/03/08 20:18:54 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/03/09 19:27:20 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 
 typedef enum	e_flags
 {
-	false,
-	true
+	False,
+	True 
 }				t_bool;
 
 typedef struct	s_flags
@@ -83,7 +83,7 @@ void			precision_width_ui(unsigned int ui, t_flags *flags,
 void			width_precision_ui(unsigned int ui, t_flags *flags,
 				int ui_len, int *count);
 
-int				printf_hexa(unsigned long ui, t_flags *flags,
+int				printf_hexa(unsigned long hexa, t_flags *flags,
 				t_bool capital);
 
 int				find_hexa_len(unsigned long x);

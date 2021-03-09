@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 18:05:58 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/03/08 19:04:35 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/03/09 19:26:26 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,40 @@ int		printf_hexa(unsigned long hexa, t_flags *flags, t_bool capital)
 
 	count = 0;
 	hexa_len = find_hexa_len(hexa);
-	if (flags->precision == 0 && hexa == 0 && flags->bool_precision)
-		return (0);
+	if (hexa == 0 && flags->bool_precision && flags->precision == 0)
+	{
+		while (flags->width-- && ++count)
+			ft_putchar(' ');
+		return (count);
+	}
 	if (hexa_len > flags->precision)
-		flags->width -= (hexa_len + count);
+		flags->width -= hexa_len;
 	else
-		flags->width -= (flags->precision + count);
-	if (flags->bool_precision == true)
-		flags->bool_zeros = false;
-	if (flags->bool_minus == true)
+		flags->width -= flags->precision;
+	if (flags->precision < 0)
+	{
+		if (flags->bool_minus == False && flags->bool_zeros == False)
+			while (flags->width-- > 0 && ++count)
+				ft_putchar(' ');
+		if (flags->bool_zeros)
+		{
+			while (flags->width-- > 0 && ++count)
+				ft_putchar('0');
+			ft_putnbr_hexa(hexa, capital);
+		}
+		if (!flags->bool_zeros)
+		{
+			ft_putnbr_hexa(hexa, capital);
+			while (flags->width-- > 0 && ++count)
+				ft_putchar(' ');
+		}
+		return (count + hexa_len);
+	}
+	if (flags->bool_precision == True)
+		flags->bool_zeros = False;
+	if (flags->bool_minus == True)
 		count += precision_width_hexa(hexa, flags, hexa_len, capital);
-	else if (flags->bool_minus == false)
+	else if (flags->bool_minus == False)
 		count += width_precision_hexa(hexa, flags, hexa_len, capital);
 	return(count + hexa_len);
 }
@@ -62,7 +85,7 @@ int		width_precision_hexa(unsigned long hexa, t_flags *flags,
 	count = 0;
 	while (flags->width-- > 0)
 	{
-		if (flags->bool_zeros == true)
+		if (flags->bool_zeros == True)
 			ft_putchar('0');
 		else
 			ft_putchar(' ');

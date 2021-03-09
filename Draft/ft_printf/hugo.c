@@ -15,10 +15,11 @@
 
 int		main(void)
 {
-	int x = 2;
+	char *x = "eee";
 	int  b, y;
-	b = printf("printf------> -|%*.*d|-\n", -2, -2, x);
-	y = ft_printf("ft_printf---> -|%*.*d|-\n", -2, -2, x);
+
+	b = printf("printf------> -|%p|-\n", x);
+	y = ft_printf("ft_printf---> -|%p|-\n", x);
 	printf("{%i}\n", b);
 	printf("{%i}\n", y);
 }
