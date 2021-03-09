@@ -1,27 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hugo.c                                             :+:      :+:    :+:   */
+/*   printf_percent.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2-221/-23/-24 16:57:57 by lmajerus          #+#    #+#             */
-/*   Updated: 2-221/-23/-28 21:35:22 by lmajerus         ###   ########.fr       */
+/*   Created: 2021/03/09 20:10:58 by lmajerus          #+#    #+#             */
+/*   Updated: 2021/03/09 20:22:31 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
-#include <limits.h>
 
-int		main(void)
-{	
-	char *x ="hello";
-	int  b, y;
-	int z = INT_MAX;
+int		printf_percent(char c, t_flags *flags)
+{
+	int		count;
 
-	b = printf("printf------> -|%*.15p|-\n", z, 1234);
-	y = ft_printf("ft_printf---> -|%*.15p|-\n", z, 1234);
-	printf("{%i}\n", b);
-	printf("{%i}\n", y);
+	count = 1;
+	if (flags->bool_minus)
+	{
+		ft_putchar(c);
+		while (flags->width-- > 1 && ++count)
+		{
+			if (flags->bool_zeros)
+				ft_putchar('0');
+			else
+				ft_putchar(' ');
+		}
+	}
+	else
+	{
+		while (flags->width-- > 1 && ++count)
+		{
+			if (flags->bool_zeros)
+				ft_putchar('0');
+			else
+				ft_putchar(' ');
+		}
+		ft_putchar(c);
+	}
+	return (count);
 }

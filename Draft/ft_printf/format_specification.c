@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 18:59:40 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/03/09 19:24:26 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/03/09 21:44:40 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int			format_specification(const char *input, t_flags *flags,
 	else if (input[*i] == 'X')
 		count = printf_hexa(va_arg(args, unsigned int), flags, True);
 	else if (input[*i] == '%')
-		count = printf_char(37, flags);
+		count = printf_percent(37, flags);
 	(*i)++;
 	return (count);
 }

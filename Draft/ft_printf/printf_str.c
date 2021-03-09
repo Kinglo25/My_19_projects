@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:32:13 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/03/09 19:29:00 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/03/09 20:48:13 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ int		char_width(char *str, t_flags *flags)
 		}
 	while (flags->width-- > 0)
 	{
-		ft_putchar(' ');
+		if (flags->bool_zeros == True)
+			ft_putchar('0');
+		else
+			ft_putchar(' ');
 		count++;
 	}
 	return (count);
@@ -68,7 +71,10 @@ int		width_char(char *str, t_flags *flags)
 	count = 0;
 	while (flags->width-- > 0)
 	{
-		ft_putchar(' ');
+		if (flags->bool_zeros == True)
+			ft_putchar('0');
+		else
+			ft_putchar(' ');
 		count++;
 	}
 	if (flags->bool_precision)
