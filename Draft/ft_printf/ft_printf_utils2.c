@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 18:47:45 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/03/09 18:35:32 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/03/10 14:34:41 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,14 @@ int			ft_strlen(const char *s)
 void		ft_putnbr_hexa(unsigned long n, t_bool capital)
 {
 	char	*hexa;
-	char	*HEXA;
+	char	*cap_hexa;
 
 	hexa = "0123456789abcdef";
-	HEXA = "0123456789ABCDEF";
+	cap_hexa = "0123456789ABCDEF";
 	if (n > 15)
 		ft_putnbr_hexa(n / 16, capital);
 	if (capital)
-		ft_putchar(HEXA[n % 16]);
+		ft_putchar(cap_hexa[n % 16]);
 	else
 		ft_putchar(hexa[n % 16]);
 }
@@ -42,4 +42,11 @@ int			find_hexa_len(unsigned long x)
 	if (x < 16ul)
 		return (1);
 	return (1 + find_hexa_len(x / 16));
+}
+
+int			find_ui_len(unsigned int x)
+{
+	if (x < 10)
+		return (1);
+	return (1 + find_ui_len(x / 10));
 }

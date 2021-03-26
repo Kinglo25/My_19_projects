@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 18:05:58 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/03/09 19:26:26 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/03/10 14:25:45 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@ int		printf_hexa(unsigned long hexa, t_flags *flags, t_bool capital)
 	int		count;
 	int		hexa_len;
 
-	count = 0;
+	if (flags->width > (INT_MAX - 1) || flags->precision > (INT_MAX - 1))
+		return (-1);
 	hexa_len = find_hexa_len(hexa);
-	if (hexa == 0 && flags->bool_precision && flags->precision == 0)
+	if (!(count = 0) && hexa == 0 && flags->bool_precision && !flags->precision)
 	{
 		while (flags->width-- && ++count)
 			ft_putchar(' ');
@@ -30,31 +31,14 @@ int		printf_hexa(unsigned long hexa, t_flags *flags, t_bool capital)
 	else
 		flags->width -= flags->precision;
 	if (flags->precision < 0)
-	{
-		if (flags->bool_minus == False && flags->bool_zeros == False)
-			while (flags->width-- > 0 && ++count)
-				ft_putchar(' ');
-		if (flags->bool_zeros)
-		{
-			while (flags->width-- > 0 && ++count)
-				ft_putchar('0');
-			ft_putnbr_hexa(hexa, capital);
-		}
-		if (!flags->bool_zeros)
-		{
-			ft_putnbr_hexa(hexa, capital);
-			while (flags->width-- > 0 && ++count)
-				ft_putchar(' ');
-		}
-		return (count + hexa_len);
-	}
+		return (if_flag_precision_neg_hexa(hexa, flags, capital) + hexa_len);
 	if (flags->bool_precision == True)
 		flags->bool_zeros = False;
 	if (flags->bool_minus == True)
 		count += precision_width_hexa(hexa, flags, hexa_len, capital);
 	else if (flags->bool_minus == False)
 		count += width_precision_hexa(hexa, flags, hexa_len, capital);
-	return(count + hexa_len);
+	return (count + hexa_len);
 }
 
 int		precision_width_hexa(unsigned long hexa, t_flags *flags,
@@ -97,5 +81,29 @@ int		width_precision_hexa(unsigned long hexa, t_flags *flags,
 		count++;
 	}
 	ft_putnbr_hexa(hexa, capital);
+	return (count);
+}
+
+int		if_flag_precision_neg_hexa(unsigned long hexa, t_flags *flags,
+		t_bool capital)
+{
+	int		count;
+
+	count = 0;
+	if (flags->bool_minus == False && flags->bool_zeros == False)
+		while (flags->width-- > 0 && ++count)
+			ft_putchar(' ');
+	if (flags->bool_zeros)
+	{
+		while (flags->width-- > 0 && ++count)
+			ft_putchar('0');
+		ft_putnbr_hexa(hexa, capital);
+	}
+	if (!flags->bool_zeros)
+	{
+		ft_putnbr_hexa(hexa, capital);
+		while (flags->width-- > 0 && ++count)
+			ft_putchar(' ');
+	}
 	return (count);
 }

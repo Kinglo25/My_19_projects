@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/27 14:08:39 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/03/09 20:13:26 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/03/10 15:08:53 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@
 # include <stdio.h>
 # include <stddef.h>
 # include <unistd.h>
+# include <limits.h>
 
 typedef enum	e_flags
 {
 	False,
-	True 
+	True
 }				t_bool;
 
 typedef struct	s_flags
@@ -91,7 +92,6 @@ int				find_hexa_len(unsigned long x);
 int				precision_width_hexa(unsigned long hexa, t_flags *flags,
 				int hexa_len, t_bool capital);
 
-
 int				width_precision_hexa(unsigned long hexa, t_flags *flags,
 				int hexa_len, t_bool capital);
 
@@ -101,5 +101,20 @@ int				find_ui_len(unsigned int x);
 
 int				printf_percent(char c, t_flags *flags);
 
+int				if_null_ptr(t_flags *flags, unsigned long ptr, int hexa_len);
+
+int				if_no_flag_minus(unsigned long ptr, t_flags *flags,
+				int hexa_len);
+
+int				if_flag_minus(unsigned long ptr, t_flags *flags, int hexa_len);
+
+int				if_flag_precision_neg(long d, t_flags *flags, int *count);
+
+int				if_zero_precision(t_flags *flags);
+
+int				if_flag_precision_neg_ui(unsigned int ui, t_flags *flags);
+
+int				if_flag_precision_neg_hexa(unsigned long hexa, t_flags *flags,
+				t_bool capital);
 
 #endif

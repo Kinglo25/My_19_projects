@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 17:04:46 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/03/08 21:25:44 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/03/10 14:34:44 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,4 @@ void		ft_putnbr_ui(unsigned int n)
 	if (n > 9)
 		ft_putnbr_ui(n / 10);
 	ft_putchar(n % 10 + 48);
-}
-
-int			find_ui_len(unsigned int x)
-{
-	if (x < 10)
-		return (1);
-	return (1 + find_ui_len(x / 10));
 }

@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 17:59:11 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/03/09 19:24:46 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/03/10 14:30:43 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,9 @@ void	width_precision_flags(const char *input, t_flags *flags,
 		flags->bool_width = True;
 		flags->width = ft_atoi(input, i);
 	}
-	if (input[*i] == '.')
+	if (input[*i] == '.' && (*i)++)
 	{
 		flags->bool_precision = True;
-		(*i)++;
 		if (input[*i] == '*')
 		{
 			flags->precision = va_arg(args, int);

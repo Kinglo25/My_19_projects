@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/08 15:32:13 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/03/09 20:48:13 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/03/10 12:53:49 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int		printf_str(char *str, t_flags *flags)
 	int		str_len;
 
 	count = 0;
+	if (flags->width > (INT_MAX - 1))
+		return (-1);
 	if (str == NULL)
 		str = "(null)";
 	str_len = ft_strlen(str);

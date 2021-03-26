@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/09 20:10:58 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/03/09 20:22:31 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/03/10 14:27:44 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int		printf_percent(char c, t_flags *flags)
 {
 	int		count;
 
-	count = 1;
-	if (flags->bool_minus)
+	if ((count = 1) && flags->bool_minus)
 	{
 		ft_putchar(c);
 		while (flags->width-- > 1 && ++count)
