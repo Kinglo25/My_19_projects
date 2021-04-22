@@ -16,7 +16,7 @@
 
 int		main(void)
 {	
-	int  b, y;
+	int  b, y, x;
 
 	b = printf("printf------> -|%s|-\n", NULL);
 	y = printf("ft_printf---> -|%s|-\n",  NULL);
