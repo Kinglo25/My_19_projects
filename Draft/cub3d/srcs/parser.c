@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 19:09:33 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/05/05 17:48:39 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/05/07 16:00:14 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ int	main(int argc, char *argv[])
 	ft_memset(&map, 0, sizeof(map));
 	if (argc == 2 || argc == 3)
 	{
+		if ((map.fd = open(argv[1], O_DIRECTORY)) != -1)
+			ft_error("Invalide : is a directory", &map);
 		get_map_len(argv[1], &map);
 		if (map.map_len == 0)
 			ft_error("no map", &map);
