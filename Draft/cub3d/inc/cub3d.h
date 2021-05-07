@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 19:09:22 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/04/22 17:47:14 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/05/05 16:49:22 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 
 typedef struct s_coord
 {
-	double	x;
-	double	y;
+	int	x;
+	int	y;
 }				t_coord;
 
 typedef struct s_map_info
@@ -41,6 +41,9 @@ typedef struct s_map_info
 	int		F;
 	t_coord	R;
 	int		fd;
+	int		n;
+	size_t	map_len;
+	int		error;
 }				t_map_info;
 
 // Get_next_line
@@ -53,9 +56,16 @@ size_t	ft_strlen(char *str);
 char	*ft_free_strjoin(char *s1, char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 int		create_rgb(int r, int g, int b);
-int		ft_atoi(const char *input, int *i);
+int		ft_atoi(const char *input, size_t *i);
+void	*ft_memset(void *s, int c, size_t n);
 
 // Parser
-void	ft_error(char *strerror, t_map_info *map);
+int		ft_error(char *strerror, t_map_info *map);
+void	get_textures(char *line, char **ptr_from_map, t_map_info *map);
+void	get_floor_ceiling(char *line, int *int_from_map, t_map_info *map);
+void	get_resolution(char *line, t_map_info *map);
+void	get_map_len(char *str, t_map_info *map);
+void	get_map(char *line, t_map_info *map);
+
 
 #endif

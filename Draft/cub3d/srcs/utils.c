@@ -6,11 +6,11 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 17:31:59 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/04/22 17:30:34 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/05/05 17:45:25 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../inc/cub3d.h"
 
 int	is_space(char c)
 {
@@ -90,12 +90,32 @@ int	create_rgb(int r, int g, int b)
 	return (r << 16 | g << 8 | b);
 }
 
-int	ft_atoi(const char *input, int *i)
+int	ft_atoi(const char *input, size_t *i)
 {
-	int	ans;
+	unsigned int	ans;
+	int				len;
 
 	ans = 0;
-	while (input[*i] >= '0' && input[*i] <= '9')
+	len = 0;
+	while (is_space(input[*i]))
+		(*i)++;
+	if (input[*i] < '0' || input[*i] > '9')
+		return (-1);
+	while (input[*i] >= '0' && input[*i] <= '9' && ++len)
 		ans = (ans * 10) + (input[(*i)++] - '0');
+	if (ans > INT_MAX || len > 10)
+		return (-1);
+	while (is_space(input[*i]))
+		(*i)++;
 	return (ans);
+}
+
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned char *ptr;
+
+	ptr = s;
+	while (n--)
+		*ptr++ = c;
+	return (s);
 }

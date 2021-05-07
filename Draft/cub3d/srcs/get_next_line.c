@@ -6,11 +6,11 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 14:42:59 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/04/21 20:23:19 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/04/22 19:23:01 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cub3d.h"
+#include "../inc/cub3d.h"
 
 static void	erase_a_line(char *s)
 {

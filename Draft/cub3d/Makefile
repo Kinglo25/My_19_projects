@@ -1,15 +1,32 @@
-NAME = cub3D
+NAME =	cub3D
 
-MLX = -I./usr/local/include/ -L/usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
+MLX =	-I./usr/local/include/ -L/usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
 
-SRCS = 
+SRCS =	srcs/get_map.c srcs/get_next_line.c srcs/get_RFC.c \
+		srcs/get_textures.c srcs/parser.c srcs/utils.c
 
 OBJS = $(SRCS:c=o)
 
+CC = gcc
+
 FLAGS = -Wall -Wextra -Werror
 
-%.o: %.c
-    $(CC) -Wall -Wextra -Werror -I/usr/include -Imlx_linux -O3 -c $< -o $@
+all : $(NAME)
 
-$(NAME): $(OBJ)
-    $(CC) -Lmlx_linux -lmlx_linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz -o $(NAME)
+$(NAME) : $(OBJS)
+		@echo "\n\033[0;33mCompiling..."
+		$(CC) -o $(NAME) $(OBJS)
+
+clean :
+		@echo "\033[0;31mCleaning objects..."
+		@rm -rf $(OBJS)
+		@echo "Cleaned up!\033[0m"
+	
+fclean :
+		@echo "\033[0;31mRemoving executable..."
+		@rm -f $(NAME)
+		@echo "Removed!\033[0m"
+
+re : fclean all
+
+.PHONY: all clean fclean re
