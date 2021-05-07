@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/07 16:07:59 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/05/07 16:18:59 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/05/07 17:07:41 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@ int	main(int argc, char *argv[])
 			j = 0;
 			while (argv[2][j])
 			{
-				if (!tab[(unsigned int)argv[1][i]] && argv[1][i] == argv[2][j])
+				if (argv[1][i] == argv[2][j] && !tab[(unsigned int)argv[1][i]]++)
 					{
 						write(1, &argv[1][i], 1);
-						tab[(unsigned int)argv[1][i]]++;
 						break;
 					}
 				j++;
