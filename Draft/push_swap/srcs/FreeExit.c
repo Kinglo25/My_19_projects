@@ -6,14 +6,14 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 17:12:40 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/10/05 17:12:59 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/10/05 17:27:53 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 void	exit(t_stack a)
 {
 	write(2, "Error\n", 6);
-	//free_list
+	free_list();
 	exit(1);
 	return (0);
 }
