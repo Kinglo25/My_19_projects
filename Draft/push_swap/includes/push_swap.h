@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/11 15:21:33 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/10/05 11:52:03 by lmajerus         ###   ########.fr       */
+/*   Created: 2021/10/04 17:09:07 by lmajerus          #+#    #+#             */
+/*   Updated: 2021/10/05 16:35:56 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-int	ft_isprint(int c)
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdio.h>
+
+typedef struct s_stack
 {
-	return (c >= 32 && c <= 126);
-}
+	int				*num;
+	struct s_stack	*next;
+}					t_stack;
+
+#endif

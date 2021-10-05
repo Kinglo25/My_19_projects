@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 19:09:22 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/05/05 16:49:22 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/05/11 17:05:54 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ typedef struct s_coord
 	int	x;
 	int	y;
 }				t_coord;
+
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
 
 typedef struct s_map_info
 {

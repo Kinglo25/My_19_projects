@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/11 15:21:33 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/10/05 11:52:03 by lmajerus         ###   ########.fr       */
+/*   Created: 2021/05/11 15:53:05 by lmajerus          #+#    #+#             */
+/*   Updated: 2021/05/11 16:42:19 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../inc/cub3d.h"
 
-int	ft_isprint(int c)
+void	raycaster(t_map_info *map)
 {
-	return (c >= 32 && c <= 126);
+	
 }

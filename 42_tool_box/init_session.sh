@@ -14,7 +14,7 @@
 # https://github.com/alexandregv/42toolbox
 
 # Ensure USER variabe is set
-[ -z "${USER}" ] && export USER=`whoami`
+[ -z "${USER}" ] && export USER=`lmajerus`
 
 ################################################################################
 
@@ -27,7 +27,7 @@ reset=$'\033[0;39m'
 
 # Config
 toolbox_path="$HOME/42toolbox"                       #=> 42toolbox path. See https://github.com/alexandregv/42toolbox
-bluetooth_device="AUKEY EP-T21"                            #=> Bluetooth device name. Empty = skip bluetooth setup
+bluetooth_device="Willful T7"                        #=> Bluetooth device name. Empty = skip bluetooth setup
 init_docker=true                                     #=> Init Docker for Mac? See https://github.com/alexandregv/42toolbox/blob/master/init_docker.sh
 init_docker_path="$toolbox_path/init_docker.sh"      #=> Location of init_docker.sh file. See https://github.com/alexandregv/42toolbox/blob/master/init_docker.sh
 install_apps=true                                    #=> Install desired apps if they are missing?

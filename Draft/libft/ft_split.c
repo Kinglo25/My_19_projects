@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmajerus <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 15:47:13 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/02/11 15:48:46 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/10/05 14:56:43 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ static int	fill(char const *s, char c, int nb_str, char **split)
 	{
 		while (s[i] == c && s[i])
 			i++;
-		if (!(split[j] = malloc(find_len_str(s, c, i) + 1)))
+		split[j] = malloc(find_len_str(s, c, i) + 1);
+		if (!split[j])
 		{
 			while (j--)
 				free(split[j]);
@@ -71,7 +72,7 @@ static int	fill(char const *s, char c, int nb_str, char **split)
 	return (0);
 }
 
-char		**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	int		nb_str;
 	char	**split;
@@ -79,7 +80,8 @@ char		**ft_split(char const *s, char c)
 	if (!s)
 		return (NULL);
 	nb_str = find_nb_str(s, c);
-	if (!(split = malloc(sizeof(char*) * (nb_str + 1))))
+	split = malloc(sizeof(char *) * (nb_str + 1));
+	if (!split)
 		return (NULL);
 	split[nb_str] = NULL;
 	if (fill(s, c, nb_str, split))

@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 19:09:33 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/05/07 16:00:14 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/05/11 15:45:40 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,20 +81,6 @@ void	put_in_struct(char *line, t_map_info *map)
 		put_in_struct_2(line, map);
 }
 
-static void	check_argv(int argc, char *argv[])
-{
-	if (argc == 3 && ft_strncmp(argv[2], "--save", 7))
-	{
-		printf("Error\nThe third argument must be: --save\n");
-		exit(0);
-	}
-	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".cub", 4))
-	{
-		printf("Error\nThe name of the map must end by: .cub\n");
-		exit(0);
-	}
-}
-
 void	parser(t_map_info *map)
 {
 	char	*line;
@@ -111,29 +97,4 @@ void	parser(t_map_info *map)
 			break ;
 	}
 	close(map->fd);
-}
-
-int	main(int argc, char *argv[])
-{
-	t_map_info	map;
-
-	ft_memset(&map, 0, sizeof(map));
-	if (argc == 2 || argc == 3)
-	{
-		if ((map.fd = open(argv[1], O_DIRECTORY)) != -1)
-			ft_error("Invalide : is a directory", &map);
-		get_map_len(argv[1], &map);
-		if (map.map_len == 0)
-			ft_error("no map", &map);
-		check_argv(argc, argv);
-		map.fd = open(argv[1], O_RDONLY);
-		if (map.fd == -1)
-		{
-			printf("Error\nCan not open the *.cub file\n");
-			exit(0);
-		}
-		parser(&map);
-	}
-	else
-		write(2, "Error\nInvalid number of arguments.\n", 35);
 }

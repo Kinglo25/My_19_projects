@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/02/11 15:21:33 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/10/05 11:52:03 by lmajerus         ###   ########.fr       */
+/*   Created: 2021/10/04 17:00:02 by lmajerus          #+#    #+#             */
+/*   Updated: 2021/10/05 15:37:40 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-int	ft_isprint(int c)
+int	main(int argc, char **argv)
 {
-	return (c >= 32 && c <= 126);
+	check_args(argc, argv);
+	return (0);
 }
