@@ -6,13 +6,13 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:53:34 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/10/05 17:13:03 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/10/07 14:36:48 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_atoi(char *str, t_stack a)
+static int	ft_atoi(char *str, t_stack **a)
 {
 	long	ans;
 	int		i;
@@ -30,18 +30,70 @@ int	ft_atoi(char *str, t_stack a)
 	while (str[i])
 	{
 		if (str[i] > '9' || str[i] < '0')
-			exit(a);
+			free_exit(a);
 		ans *= 10;
 		ans += (int)(str[i] - 48);
 		i++;
 	}
 	ans *= signe;
 	if (ans > 2147483647 || ans < -2147483648)
-		exit(a);
+		free_exit(a);
 	return (ans);
 }
 
-int	main(int ar, char **av)
+static t_stack	*ft_lstnew(int content, t_stack **a)
 {
-	return (0);
+	t_stack	*new;
+
+	new = malloc(sizeof(t_stack));
+	if (!new)
+		free_exit(a);
+	new->num = content;
+	new->next = NULL;
+	return (new);
+}
+
+t_stack	*ft_lstlast(t_stack *lst)
+{
+	while (lst)
+	{
+		if (!lst->next)
+			break ;
+		lst = lst->next;
+	}
+	return (lst);
+}
+
+static void	ft_lstadd_back(t_stack **lst, t_stack *new)
+{
+	if (!*lst)
+		*lst = new;
+	else
+		ft_lstlast(*lst)->next = new;
+}
+
+t_stack	*create_stack(int ac, char **av, t_stack **a)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	while (i < ac)
+	{
+		j = i + 1;
+		while (j < ac)
+		{
+			if (!ft_strcmp(av[i], av[j]))
+				free_exit(a);
+			j++;
+		}
+		i++;
+	}
+	i = 1;
+	while (i < ac)
+	{
+		ft_lstadd_back(a, ft_lstnew(ft_atoi(av[i], a), a));
+		i++;
+	}
+	return (*a);
 }

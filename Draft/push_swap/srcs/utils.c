@@ -6,20 +6,18 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 16:14:48 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/10/05 17:18:31 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/10/07 14:40:33 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_stack	*ft_lstnew(void *content)
+int	ft_strcmp(char *s1, char *s2)
 {
-	t_stack	*new;
+	size_t	i;
 
-	new = malloc(sizeof(t_stack));
-	if (!new)
-		exit(a);
-	new->num = content;
-	new->next = NULL;
-	return (new);
+	i = 0;
+	while (s1[i] == s2[i] && s1[i] && s2[i])
+		i++;
+	return (s1[i] - s2[i]);
 }
