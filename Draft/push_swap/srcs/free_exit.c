@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 17:12:40 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/10/06 15:44:45 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/10/07 18:09:56 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,13 @@ static void	free_stack(t_stack **a)
 
 void	free_exit(t_stack **a)
 {
+	free_stack(a);
+	exit(0);
+}
+
+void	free_exit_error(t_stack **a)
+{
 	write(2, "Error\n", 6);
 	free_stack(a);
-	exit(1);
+	exit(19);
 }

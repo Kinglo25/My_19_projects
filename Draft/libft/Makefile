@@ -22,7 +22,7 @@ CFLAGS			=	-Wall -Wextra -Werror
 
 all:		$(OBJS) $(BONUS_OBJS) $(NAME)
 
-%.o:		%.c
+$(OBJS):	%.o: %.c
 				@echo "Compiling $<"
 				@$(CC) $(CFLAGS) -c -I. $< -o $(<:c=o)
 				@echo "Compiling OK!"

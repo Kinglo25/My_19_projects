@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 16:53:34 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/10/07 14:36:48 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/10/12 19:03:59 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ static int	ft_atoi(char *str, t_stack **a)
 	while (str[i])
 	{
 		if (str[i] > '9' || str[i] < '0')
-			free_exit(a);
+			free_exit_error(a);
 		ans *= 10;
 		ans += (int)(str[i] - 48);
 		i++;
 	}
 	ans *= signe;
 	if (ans > 2147483647 || ans < -2147483648)
-		free_exit(a);
+		free_exit_error(a);
 	return (ans);
 }
 
@@ -47,13 +47,13 @@ static t_stack	*ft_lstnew(int content, t_stack **a)
 
 	new = malloc(sizeof(t_stack));
 	if (!new)
-		free_exit(a);
+		free_exit_error(a);
 	new->num = content;
 	new->next = NULL;
 	return (new);
 }
 
-t_stack	*ft_lstlast(t_stack *lst)
+static	t_stack	*ft_lstlast(t_stack *lst)
 {
 	while (lst)
 	{
@@ -72,7 +72,7 @@ static void	ft_lstadd_back(t_stack **lst, t_stack *new)
 		ft_lstlast(*lst)->next = new;
 }
 
-t_stack	*create_stack(int ac, char **av, t_stack **a)
+void	create_stack(long ac, char **av, t_stack **a)
 {
 	int	i;
 	int	j;
@@ -84,16 +84,12 @@ t_stack	*create_stack(int ac, char **av, t_stack **a)
 		while (j < ac)
 		{
 			if (!ft_strcmp(av[i], av[j]))
-				free_exit(a);
+				free_exit_error(a);
 			j++;
 		}
 		i++;
 	}
 	i = 1;
 	while (i < ac)
-	{
-		ft_lstadd_back(a, ft_lstnew(ft_atoi(av[i], a), a));
-		i++;
-	}
-	return (*a);
+		ft_lstadd_back(a, ft_lstnew(ft_atoi(av[i++], a), a));
 }

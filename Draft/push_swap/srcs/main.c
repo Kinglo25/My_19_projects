@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 17:00:02 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/10/07 16:55:52 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/10/13 16:21:15 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,21 @@ int	main(int ac, char **av)
 {
 	t_stack	*a;
 	t_stack	*b;
+	long	size;
 
 	a = NULL;
 	b = NULL;
-	create_stack(ac, av, &a);
-	push_from_to(&a, &b);
-	while (a)
+	if (ac >= 2)
 	{
-		printf("%d\n", a->num);
-		a = a->next;
+		create_stack(ac, av, &a);
+		is_sorted(a);
+		size = index_stack(&a);
+		if (ac == 3)
+			sa(&a);
+		else if (ac >= 4 && ac <= 6)
+			sort_small_stacks(&a, &b, ac);
+		else
+			radix(&a, &b, size);
 	}
-	printf("---------\n");
-	while (b)
-	{
-		printf("%d\n", b->num);
-		b = b->next;
-	}
-	return (0);
+	free_exit(&a);
 }
