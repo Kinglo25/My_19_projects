@@ -1,32 +1,40 @@
-NAME =	cub3D
+NAME	=	cub3D
 
-MLX =	-I./usr/local/include/ -L/usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
+MLX		=	-I./usr/local/include/ -L/usr/local/lib/ -lmlx -framework OpenGL -framework AppKit
 
-SRCS =	srcs/get_map.c srcs/get_next_line.c srcs/get_RFC.c \
-		srcs/get_textures.c srcs/parser.c srcs/utils.c
+SRCS	=	srcs/get_map.c srcs/get_next_line.c srcs/get_RFC.c \
+		srcs/get_textures.c srcs/parser.c srcs/utils.c srcs/main.c
 
-OBJS = $(SRCS:c=o)
+OBJS	=	$(SRCS:c=o)
 
-CC = gcc
+INC		= -I.
+
+CC		= 	gcc
 
 FLAGS = -Wall -Wextra -Werror
 
 all : $(NAME)
 
-$(NAME) : $(OBJS)
-		@echo "\n\033[0;33mCompiling..."
-		$(CC) -o $(NAME) $(OBJS)
+%.o:		%.c
+		@echo "Compiling $<"
+		@$(CC) $(CFLAGS) -c $(INC) $< -o $(<:c=o)
+		@echo "Compiling OK!"
 
-clean :
+$(NAME) :	$(OBJS)
+		@echo "\n\033[0;33mCreating an executable"
+		@$(CC) $(INC) $(CFLAGS) $^ -o $@
+		@echo "\n\033[0;33mJob's done!"
+
+clean:
 		@echo "\033[0;31mCleaning objects..."
 		@rm -rf $(OBJS)
 		@echo "Cleaned up!\033[0m"
 	
-fclean :
+fclean:	clean
 		@echo "\033[0;31mRemoving executable..."
 		@rm -f $(NAME)
 		@echo "Removed!\033[0m"
 
-re : fclean all
+re: fclean all
 
 .PHONY: all clean fclean re

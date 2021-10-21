@@ -6,9 +6,11 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 15:42:11 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/05/11 15:51:31 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:12:19 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "../inc/cub3d.h"
 
 static void	check_argv(int argc, char *argv[])
 {
@@ -31,7 +33,8 @@ int	main(int argc, char *argv[])
 	ft_memset(&map, 0, sizeof(map));
 	if (argc == 2 || argc == 3)
 	{
-		if ((map.fd = open(argv[1], O_DIRECTORY)) != -1)
+		map.fd = open(argv[1], O_DIRECTORY);
+		if (map.fd != -1)
 			ft_error("Invalide : is a directory", &map);
 		get_map_len(argv[1], &map);
 		if (map.map_len == 0)
@@ -44,7 +47,7 @@ int	main(int argc, char *argv[])
 			exit(0);
 		}
 		parser(&map);
-		raycaster(&map);
+		/* raycaster(&map); */
 	}
 	else
 		write(2, "Error\nInvalid number of arguments.\n", 35);

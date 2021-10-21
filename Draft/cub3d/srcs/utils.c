@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/21 17:31:59 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/05/05 17:45:25 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/10/21 15:24:25 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,9 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
-int	create_rgb(int r, int g, int b)
+int	create_rgb(int t, int r, int g, int b)
 {
-	return (r << 16 | g << 8 | b);
+	return (t << 24 | r << 16 | g << 8 | b);
 }
 
 int	ft_atoi(const char *input, size_t *i)
@@ -112,7 +112,7 @@ int	ft_atoi(const char *input, size_t *i)
 
 void	*ft_memset(void *s, int c, size_t n)
 {
-	unsigned char *ptr;
+	unsigned char	*ptr;
 
 	ptr = s;
 	while (n--)

@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 19:09:33 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/05/11 15:45:40 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/10/20 17:10:52 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,16 @@ int	ft_error(char *strerror, t_map_info *map)
 
 	i = 0;
 	printf("Error\n%s\n", strerror);
-	if (map->NO)
-		free(map->NO);
-	if (map->SO)
-		free(map->SO);
-	if (map->EA)
-		free(map->EA);
-	if (map->WE)
-		free(map->WE);
-	if (map->S)
-		free(map->S);
+	if (map->no)
+		free(map->no);
+	if (map->so)
+		free(map->so);
+	if (map->ea)
+		free(map->ea);
+	if (map->we)
+		free(map->we);
+	if (map->s)
+		free(map->s);
 	if (map->map)
 	{
 		while (map->map[i])
@@ -60,21 +60,21 @@ void	put_in_struct(char *line, t_map_info *map)
 	while (is_space(line[i]))
 		i++;
 	if (line[i] == 'N' && line[i + 1] == 'O' && is_space(line[i + 2]))
-		get_textures(line + i + 2, &map->NO, map);
+		get_textures(line + i + 2, &map->no, map);
 	else if (line[i] == 'S' && line[i + 1] == 'O' && is_space(line[i + 2]))
-		get_textures(line + i + 2, &map->SO, map);
+		get_textures(line + i + 2, &map->so, map);
 	else if (line[i] == 'E' && line[i + 1] == 'A' && is_space(line[i + 2]))
-		get_textures(line + i + 2, &map->EA, map);
+		get_textures(line + i + 2, &map->ea, map);
 	else if (line[i] == 'W' && line[i + 1] == 'E' && is_space(line[i + 2]))
-		get_textures(line + i + 2, &map->WE, map);
+		get_textures(line + i + 2, &map->we, map);
 	else if (line[i] == 'S' && is_space(line[i + 1]))
-		get_textures(line + i + 1, &map->S, map);
+		get_textures(line + i + 1, &map->s, map);
 	else if (line[i] == 'R' && is_space(line[i + 1]))
 		get_resolution(line + i + 1, map);
 	else if (line[i] == 'F' && is_space(line[i + 1]))
-		get_floor_ceiling(line + i + 1, &map->F, map);
+		get_floor_ceiling(line + i + 1, &map->f, map);
 	else if (line[i] == 'C' && is_space(line[i + 1]))
-		get_floor_ceiling(line + i + 1, &map->C, map);
+		get_floor_ceiling(line + i + 1, &map->c, map);
 	else if (line[i] == '\0')
 		return ;
 	else

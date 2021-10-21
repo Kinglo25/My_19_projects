@@ -6,13 +6,13 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 17:21:43 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/05/05 18:00:21 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/10/20 16:43:59 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static int	check_format_R(char *str)
+static int	check_format_r(char *str)
 {
 	size_t	i;
 
@@ -45,13 +45,13 @@ void	get_resolution(char *line, t_map_info *map)
 	i = 0;
 	while (is_space(line[i]))
 		i++;
-	if (check_format_R(line + i))
+	if (check_format_r(line + i))
 		ft_error("There is a problem in your .cub file check R format", map);
-	map->R.x = ft_atoi(line, &i);
+	map->r.x = ft_atoi(line, &i);
 	while (is_space(line[i]))
 		i++;
-	map->R.y = ft_atoi(line, &i);
-	if (map->R.x == -1 || map->R.y == -1 || map->R.x == 0 || map->R.y == 0)
+	map->r.y = ft_atoi(line, &i);
+	if (map->r.x == -1 || map->r.y == -1 || map->r.x == 0 || map->r.y == 0)
 		ft_error("There is a problem in your .cub file check R format", map);
 	while (line[i])
 		if (!is_space(line[i++]))
@@ -59,7 +59,7 @@ void	get_resolution(char *line, t_map_info *map)
 	map->n++;
 }
 
-static int	check_format_FC(char *str, t_map_info *map)
+static int	check_format_fc(char *str, t_map_info *map)
 {
 	size_t	i;
 
@@ -108,7 +108,7 @@ void	get_floor_ceiling(char *line, int *int_from_map, t_map_info *map)
 	i = 0;
 	while (is_space(line[i]))
 		i++;
-	if (check_format_FC(line + i, map))
+	if (check_format_fc(line + i, map))
 		ft_error("There is a problem in your .cub file, check F/C format", map);
 	r = ft_atoi(line, &i);
 	if (line[i] == ',')
@@ -123,6 +123,6 @@ void	get_floor_ceiling(char *line, int *int_from_map, t_map_info *map)
 	b = ft_atoi(line, &i);
 	if (check_rgb(r, g, b))
 		ft_error("rgb color must be between 0 and 255", map);
-	*int_from_map = create_rgb(r, g ,b);
+	*int_from_map = create_rgb(r, g, b);
 	map->n++;
 }

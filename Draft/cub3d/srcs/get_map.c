@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 16:48:03 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/05/05 17:23:08 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/10/20 16:34:55 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,32 @@ static int	check_char(char c, t_map_info *map)
 {
 	if ((c == 'W' || c == 'S' || c == 'N' || c == 'E') && map->error++)
 		return (19);
-	return (c != '1' && c != '2' && c != '0' && 
-	c != 'W' && c != 'S' && c != 'N' && c != 'E' && !is_space(c));
+	return (c != '1' && c != '2' && c != '0' && c != 'W'
+		&& c != 'S' && c != 'N' && c != 'E' && !is_space(c));
 }
 
 static void	check_map(t_map_info *map)
 {
 	size_t	i;
 	size_t	j;
-	size_t	line_len;
+	size_t	len;
 
 	i = 0;
 	while (map->map[i])
 	{
 		j = 0;
-		line_len = ft_strlen(map->map[i]);
+		len = ft_strlen(map->map[i]);
 		while (map->map[i][j])
 		{
-			if ((i == 0 || j == 0 || i == (map->map_len - 1) || j == (line_len - 1)) 
-			&& (map->map[i][j] != '1' && !is_space(map->map[i][j])))
+			if ((i == 0 || j == 0 || i == (map->map_len - 1) || j == (len - 1))
+				&& (map->map[i][j] != '1' && !is_space(map->map[i][j])))
 				ft_error("Your map is not closed1", map);
 			if (check_char(map->map[i][j], map))
 				ft_error("Wrong char in your map", map);
 			if (map->map[i][j] != '1' && !is_space(map->map[i][j]))
-			{
 				if (is_space(map->map[i - 1][j]) || is_space(map->map[i][j - 1])
 				|| is_space(map->map[i + 1][j]) || is_space(map->map[i][j + 1]))
 					ft_error("Your map is not closed", map);
-			}
 			j++;
 		}
 		i++;
@@ -57,10 +55,10 @@ void	get_map(char *line, t_map_info *map)
 
 	i = 0;
 	if (!map->map)
-		map->map = malloc(map->map_len * sizeof(char*) + 1);
+		map->map = malloc(map->map_len * sizeof(char *) + 1);
 	if (map->map == NULL)
 		ft_error("malloc error", map);
-	map->map[map->map_len] = NULL; 
+	map->map[map->map_len] = NULL;
 	map->map[y] = malloc(ft_strlen(line) + 1);
 	if (map->map[y] == NULL)
 		ft_error("malloc error", map);
@@ -75,7 +73,7 @@ void	get_map(char *line, t_map_info *map)
 	{
 		check_map(map);
 		if (map->error != 1)
-			ft_error("Missing player position", map);
+			ft_error("Missing or multiple player position", map);
 	}
 }
 

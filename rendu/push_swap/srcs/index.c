@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/08 10:45:48 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/10/20 15:10:53 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:28:22 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,6 @@ static void	sort_tab(int *tab, long size)
 		i++;
 	}
 }
-sdasd
-
 
 static void	put_index_in_stack(t_stack **a, long size, int *tab)
 {
