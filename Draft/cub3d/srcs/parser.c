@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 19:09:33 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/10/20 17:10:52 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/11/02 22:38:46 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int	ft_error(char *strerror, t_map_info *map)
 		free(map->ea);
 	if (map->we)
 		free(map->we);
-	if (map->s)
-		free(map->s);
 	if (map->map)
 	{
 		while (map->map[i])
@@ -44,9 +42,9 @@ void	put_in_struct_2(char *line, t_map_info *map)
 	i = 0;
 	while (is_space(line[i]))
 		i++;
-	if (map->n != 8 && line[i] == '1')
+	if (map->n != 7 && line[i] == '1')
 		ft_error("There is a problem in your .cub file", map);
-	else if (map->n == 8 && line[i] == '1')
+	else if (map->n == 7 && line[i] == '1')
 		get_map(line, map);
 	else if (!is_space(line[i]))
 		ft_error("wrong char in your .cub file", map);
@@ -67,8 +65,6 @@ void	put_in_struct(char *line, t_map_info *map)
 		get_textures(line + i + 2, &map->ea, map);
 	else if (line[i] == 'W' && line[i + 1] == 'E' && is_space(line[i + 2]))
 		get_textures(line + i + 2, &map->we, map);
-	else if (line[i] == 'S' && is_space(line[i + 1]))
-		get_textures(line + i + 1, &map->s, map);
 	else if (line[i] == 'R' && is_space(line[i + 1]))
 		get_resolution(line + i + 1, map);
 	else if (line[i] == 'F' && is_space(line[i + 1]))

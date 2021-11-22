@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 17:21:43 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/10/20 16:43:59 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/10/27 16:29:10 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,13 @@ void	get_resolution(char *line, t_map_info *map)
 	if (check_format_r(line + i))
 		ft_error("There is a problem in your .cub file check R format", map);
 	map->r.x = ft_atoi(line, &i);
+	if (map->r.x > 2560)
+		map->r.x = 2560;
 	while (is_space(line[i]))
 		i++;
 	map->r.y = ft_atoi(line, &i);
+	if (map->r.y > 1440)
+		map->r.y = 1440;
 	if (map->r.x == -1 || map->r.y == -1 || map->r.x == 0 || map->r.y == 0)
 		ft_error("There is a problem in your .cub file check R format", map);
 	while (line[i])
@@ -79,7 +83,7 @@ static int	check_format_fc(char *str, t_map_info *map)
 		i++;
 	if (str[i] == ',')
 		i++;
-	while ((str[i] >= '0' && str[i] <= '9') || is_space(str[i]))
+	while ((str[i] >= '0' && str[i] <= '9'))
 		i++;
 	while (str[i])
 		if (!is_space(str[i++]))
@@ -123,6 +127,6 @@ void	get_floor_ceiling(char *line, int *int_from_map, t_map_info *map)
 	b = ft_atoi(line, &i);
 	if (check_rgb(r, g, b))
 		ft_error("rgb color must be between 0 and 255", map);
-	*int_from_map = create_rgb(r, g, b);
+	*int_from_map = create_rgb(0, r, g, b);
 	map->n++;
 }

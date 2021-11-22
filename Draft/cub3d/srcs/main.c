@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 15:42:11 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/10/20 17:12:19 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/11/02 22:41:57 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 
 static void	check_argv(int argc, char *argv[])
 {
-	if (argc == 3 && ft_strncmp(argv[2], "--save", 7))
-	{
-		printf("Error\nThe third argument must be: --save\n");
-		exit(0);
-	}
 	if (ft_strncmp(argv[1] + ft_strlen(argv[1]) - 4, ".cub", 4))
 	{
 		printf("Error\nThe name of the map must end by: .cub\n");
@@ -31,7 +26,7 @@ int	main(int argc, char *argv[])
 	t_map_info	map;
 
 	ft_memset(&map, 0, sizeof(map));
-	if (argc == 2 || argc == 3)
+	if (argc == 2)
 	{
 		map.fd = open(argv[1], O_DIRECTORY);
 		if (map.fd != -1)
@@ -47,7 +42,7 @@ int	main(int argc, char *argv[])
 			exit(0);
 		}
 		parser(&map);
-		/* raycaster(&map); */
+		mlx(&map);
 	}
 	else
 		write(2, "Error\nInvalid number of arguments.\n", 35);
