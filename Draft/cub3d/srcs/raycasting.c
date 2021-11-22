@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/27 12:00:39 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/11/02 22:46:24 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/11/22 15:26:32 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,15 +90,35 @@ void	init_vars(t_data *c, int x)
 		c->text_num = 3;
 }
 
-void	raycasting(t_data *c)
+void	set_text_vars(t_data *c)
+{
+	if (c->side == 0)
+		c->wall_x = c->m->pos_y + c->pwd * c->rdy;
+	else
+		c->wall_x = c->m->pos_x + c->pwd * c->rdx;
+	c->wall_x -= floor(c->wall_x);
+	c->tex_x = (int)(c->wall_x * (double)TEXTWIDTH);
+	if (c->side == 0 && c->rdx > 0)
+		c->tex_x = TEXTWIDTH - c->tex_x - 1;
+	if (c->side == 1 && c->rdy < 0)
+		c->tex_x = TEXTWIDTH - c->tex_x - 1;
+	c->step = 1.0 * TEXTWIDTH / c->line_h;
+	c->text_pos = (c->draw_s - c->m->r.y / 2 + c->line_h / 2) * c->step;
+}
+
+int	raycasting(t_data *c)
 {
 	int	x;
 
 	x = 0;
+	draw_ceil_floor(c);
 	while (x < c->m->r.x)
 	{
 		init_vars(c, x);
+		set_text_vars(c);
+		draw_line(c, x);
 		x++;
 	}
 	mlx_put_image_to_window(c->mlx, c->win, c->img, 0, 0);
+	return (0);
 }

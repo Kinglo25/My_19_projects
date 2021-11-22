@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 19:09:22 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/11/02 22:33:05 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/11/22 15:26:24 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +147,7 @@ void	parser(t_map_info *map);
 
 //mlx
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-void	raycasting(t_data *c);
+int		raycasting(t_data *c);
 int		mlx(t_map_info *map);
 
 // Raycaster
@@ -162,5 +162,9 @@ void	turn_leftright(int key, t_data *s);
 int		key_hook(int key, t_data *c);
 int		ft_exit_button(t_data *c);
 int		ft_exit(t_data *c, int ret);
+
+// draw
+void	draw_ceil_floor(t_data *c);
+void	draw_line(t_data *c, int x);
 
 #endif

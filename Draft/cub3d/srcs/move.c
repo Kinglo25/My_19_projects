@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 17:55:29 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/11/02 22:25:58 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/11/22 15:39:49 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	move_leftright(int key, t_data *c)
 
 void	turn_leftright(int key, t_data *c)
 {
-	if (key == RIGHT)
+	if (key == LEFT)
 	{
 		c->o_dx = c->m->dx;
 		c->m->dx = c->m->dx * cos(-TSP) - c->m->dy * sin(-TSP);
@@ -67,7 +67,7 @@ void	turn_leftright(int key, t_data *c)
 		c->m->px = c->m->px * cos(-TSP) - c->m->py * sin(-TSP);
 		c->m->py = c->o_px * sin(-TSP) + c->m->py * cos(-TSP);
 	}
-	if (key == LEFT)
+	if (key == RIGHT)
 	{
 		c->o_dx = c->m->dx;
 		c->m->dx = c->m->dx * cos(TSP) - c->m->dy * sin(TSP);

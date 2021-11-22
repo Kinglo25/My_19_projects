@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/11 17:03:54 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/11/02 22:12:55 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/11/22 15:37:41 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,10 @@ int	mlx(t_map_info *map)
 	c.win = mlx_new_window(c.mlx, c.m->r.x, c.m->r.y, "Cub3D");
 	c.img = mlx_new_image(c.mlx, c.m->r.x, c.m->r.y);
 	c.addr = mlx_get_data_addr(c.img, &c.bpp, &c.line_len, &c.endian);
-	//get_image(&c);
+	get_image(&c);
 	mlx_hook(c.win, 2, 1L << 0, key_hook, &c);
 	mlx_hook(c.win, 17, 0, ft_exit_button, &c);
 	mlx_loop_hook(c.mlx, raycasting, &c);
-	mlx_do_key_autorepeatoff(c.mlx);
 	mlx_loop(c.mlx);
 	return (ft_exit(&c, 0));
 }

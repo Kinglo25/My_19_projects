@@ -5,7 +5,7 @@ MLX		=	-I./usr/local/include/ -L/usr/local/lib/ -lmlx -framework OpenGL -framewo
 SRCS	=	srcs/get_map.c srcs/get_next_line.c srcs/get_RFC.c \
 		srcs/get_textures.c srcs/parser.c srcs/utils.c srcs/main.c \
 		srcs/mlx.c srcs/raycasting.c srcs/utils2.c \
-		srcs/event.c srcs/move.c 
+		srcs/event.c srcs/move.c srcs/draw.c
 
 OBJS	=	$(SRCS:c=o)
 
@@ -13,7 +13,7 @@ INC		= -I.
 
 CC		= 	gcc
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -fsanitize=address 
 
 all : $(NAME)
 

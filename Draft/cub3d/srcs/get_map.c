@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 16:48:03 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/11/02 22:40:54 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/11/22 14:06:34 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	get_pos_and_dir(t_map_info *map, int i, int j, char c)
 {
-	map->pos_x = j;
-	map->pos_y = i;
+	map->pos_x = i;
+	map->pos_y = j;
 	if (c == 'N')
 	{
 		map->dy = -1;
