@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/22 17:21:43 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/10/27 16:29:10 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/12/09 13:40:05 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,10 @@ static int	check_format_fc(char *str, t_map_info *map)
 {
 	size_t	i;
 
-	i = 0;
-	while (str[i])
-	{
+	i = -1;
+	while (str[i++])
 		if (!is_space(str[i]) && str[i] < '0' && str[i] > '9' && str[i] == ',')
 			return (19);
-		i++;
-	}
 	i = 0;
 	while ((str[i] >= '0' && str[i] <= '9') || is_space(str[i]))
 		i++;
@@ -83,7 +80,9 @@ static int	check_format_fc(char *str, t_map_info *map)
 		i++;
 	if (str[i] == ',')
 		i++;
-	while ((str[i] >= '0' && str[i] <= '9'))
+	while (is_space(str[i]))
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
 		i++;
 	while (str[i])
 		if (!is_space(str[i++]))

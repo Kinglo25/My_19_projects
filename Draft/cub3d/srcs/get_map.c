@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 16:48:03 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/11/22 14:06:34 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/12/09 13:49:27 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	get_pos_and_dir(t_map_info *map, int i, int j, char c)
 {
-	map->pos_x = i;
-	map->pos_y = j;
+	map->pos_x = i + 0.5;
+	map->pos_y = j + 0.5;
 	if (c == 'N')
 	{
 		map->dy = -1;
@@ -64,7 +64,7 @@ static void	check_map(t_map_info *map)
 		{
 			if ((i == 0 || j == 0 || i == (map->map_len - 1) || j == (len - 1))
 				&& (map->map[i][j] != '1' && !is_space(map->map[i][j])))
-				ft_error("Your map is not closed1", map);
+				ft_error("Please check your map!", map);
 			if (check_char(map->map[i][j], map, i, j))
 				ft_error("Wrong char in your map", map);
 			if (map->map[i][j] != '1' && !is_space(map->map[i][j]))
