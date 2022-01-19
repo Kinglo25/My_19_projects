@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:51:56 by lmajerus          #+#    #+#             */
-/*   Updated: 2022/01/19 20:08:07 by lmajerus         ###   ########.fr       */
+/*   Updated: 2022/01/19 20:15:19 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_sleep(int time, t_glob *g)
 	long long	t;
 
 	t = timestamp();
-	while (!g->died && time_diff(t, timestamp) <= time)
+	while (!g->died && time_diff(t, timestamp()) <= time)
 		usleep(50);
 }
 

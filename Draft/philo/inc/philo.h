@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 17:24:36 by lmajerus          #+#    #+#             */
-/*   Updated: 2022/01/19 20:08:22 by lmajerus         ###   ########.fr       */
+/*   Updated: 2022/01/19 21:25:54 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_phil
 	int				l_fork;
 	int				r_fork;
 	long long		t_last_meal;
-	struct t_glob	*g;
+	struct s_glob	*g;
 	pthread_t		thread_id;
 }			t_phil;
 
@@ -42,13 +42,14 @@ typedef struct s_glob
 	int				ate_max;
 	long long		first_timestamp;
 	pthread_mutex_t	forks[200];
+	pthread_mutex_t	check;
 	pthread_mutex_t	writing;
 	t_phil			phil[200];
 }				t_glob;
 
 // init.c
 
-int			init_all(int ac, char **av, t_glob *g);
+int			init_all(char **av, t_glob *g);
 
 // utils.c
 
@@ -58,6 +59,7 @@ int			time_diff(long long past, long long pres);
 void		ft_sleep(int time, t_glob *g);
 long long	timestamp(void);
 int			error(char *str);
+void		print_status(char *str, int id, t_glob *g);
 
 // philo.c
 

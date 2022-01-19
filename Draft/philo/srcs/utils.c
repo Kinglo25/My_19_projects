@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 13:52:07 by lmajerus          #+#    #+#             */
-/*   Updated: 2022/01/19 18:03:56 by lmajerus         ###   ########.fr       */
+/*   Updated: 2022/01/19 21:12:10 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	ft_atoi(const char *str)
 			return (-1);
 	ans = 0;
 	nb_len = 0;
-	while (*str)
+	while (str[i])
 	{
 		if (str[i] >= '0' && str[i] <= '9')
 			ans = (ans * 10) + (str[i++] - '0');
@@ -62,15 +62,15 @@ long long	timestamp(void)
 	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
 }
 
-void	print_status(char *str, int id, t_global *g)
+void	print_status(char *str, int id, t_glob *g)
 {
 	pthread_mutex_lock(&g->writing);
 	if (!g->died)
 	{
 		printf("%lli ", timestamp() - g->first_timestamp);
 		printf("%i ", id + 1);
-		write(1, str, ft_strlen(str));
+		printf("%s", str);
 	}
-	pthread_mutex_unlock(&(g->writing));
+	pthread_mutex_unlock(&g->writing);
 	return ;
 }

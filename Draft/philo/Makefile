@@ -1,6 +1,6 @@
 NAME		=	philo
 
-SRCS		=	srcs/main.c srcs/init.c srcs/freerror.c \
+SRCS		=	srcs/main.c srcs/init.c \
 				srcs/utils.c srcs/utils1.c srcs/philo.c
 
 OBJS		=	$(SRCS:c=o)
@@ -20,7 +20,7 @@ all:			$(OBJS) $(NAME)
 
 $(NAME):	$(OBJS)
 				@echo "Linking $^"
-				@cc $(CFLAGS) $^ -o $@
+				@cc $(CFLAGS) $^ -o $@ -lpthread 
 				@echo "Executable created!"
 clean:
 				@echo "Cleaning objects..."
