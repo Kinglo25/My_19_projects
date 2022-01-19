@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 13:49:14 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/12/15 13:43:29 by lmajerus         ###   ########.fr       */
+/*   Updated: 2021/12/15 15:58:59 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	exec_cmd2(t_p *pipex)
 	{
 		dup2(pipex->end[0], STDIN_FILENO);
 		dup2(pipex->fd_out, STDOUT_FILENO);
-		close(pipex->end[1]);
+		write(1, "test\n", 5);
 		i = 0;
 		while (pipex->path2[i])
 			execve(pipex->path2[i++], pipex->split_cmd2, pipex->env);
