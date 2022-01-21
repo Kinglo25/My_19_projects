@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:34:01 by lmajerus          #+#    #+#             */
-/*   Updated: 2022/01/19 21:33:05 by lmajerus         ###   ########.fr       */
+/*   Updated: 2022/01/21 17:29:57 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@ static void	philo_eats(t_phil *phil, t_glob *g)
 {
 	pthread_mutex_lock(&g->forks[phil->l_fork]);
 	print_status("has taken a fork\n", phil->id, g);
+	if (phil->l_fork == phil->r_fork)
+		return ;
 	pthread_mutex_lock(&g->forks[phil->r_fork]);
 	print_status("has taken a fork\n", phil->id, g);
-	//pthread_mutex_lock(&g->check);
+	pthread_mutex_lock(&g->check);
 	print_status("is eating\n", phil->id, g);
 	phil->t_last_meal = timestamp();
-	//pthread_mutex_unlock(&g->check);
+	pthread_mutex_unlock(&g->check);
 	ft_sleep(g->t_eat, g);
 	phil->nb_ate++;
 	pthread_mutex_unlock(&g->forks[phil->l_fork]);
@@ -40,7 +42,7 @@ static void	*routine(void *arg)
 	while (!g->died)
 	{
 		philo_eats(phil, g);
-		if (g->ate_max)
+		if (g->ate_max || phil->l_fork == phil->r_fork)
 			break ;
 		print_status("is sleeping\n", phil->id, g);
 		ft_sleep(g->t_sleep, g);
@@ -69,29 +71,28 @@ static void	join_destroy(t_glob *g, t_phil *p)
 	return ;
 }
 
-static void	check_if_dead(t_glob *g, t_phil *p)
+static void	check_if_dead(t_glob *g, t_phil *p, int i)
 {
-	int	i;
-
 	while (!g->ate_max)
 	{
 		i = 0;
 		while (i < g->nb_phil && !(g->died))
 		{
-			//pthread_mutex_lock(&g->check);
+			pthread_mutex_lock(&g->check);
 			if (time_diff(p[i].t_last_meal, timestamp()) >= g->t_die)
 			{
 				print_status("died\n", i, g);
 				g->died = 1;
 			}
-			//pthread_mutex_unlock(&g->check);
+			pthread_mutex_unlock(&g->check);
+			usleep(100);
 			i++;
 		}
 		if (g->died)
 			break ;
 		i = 0;
-		while (g->nb_max_eat != -1 && i < g->nb_phil
-			&& p[i].nb_ate == g->nb_max_eat)
+		while (g->nb_max_eat != -1 && i <= g->nb_phil
+			&& p[i].nb_ate >= g->nb_max_eat)
 			i++;
 		if (i == g->nb_phil)
 			g->ate_max = 1;
@@ -114,7 +115,7 @@ int	philo(t_glob *g)
 		phil[i].t_last_meal = timestamp();
 		i++;
 	}
-	check_if_dead(g, g->phil);
+	check_if_dead(g, g->phil, i);
 	join_destroy(g, phil);
 	return (0);
 }

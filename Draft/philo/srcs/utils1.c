@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 18:51:56 by lmajerus          #+#    #+#             */
-/*   Updated: 2022/01/19 20:15:19 by lmajerus         ###   ########.fr       */
+/*   Updated: 2022/01/21 13:32:08 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_sleep(int time, t_glob *g)
 		usleep(50);
 }
 
-int	error(char *str)//++
+int	error(char *str)
 {
 	write(2, "Error: ", 7);
 	write(2, str, ft_strlen(str));
