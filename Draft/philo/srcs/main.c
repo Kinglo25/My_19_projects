@@ -5,22 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/13 17:26:56 by lmajerus          #+#    #+#             */
-/*   Updated: 2022/01/19 20:51:44 by lmajerus         ###   ########.fr       */
+/*   Created: 2022/01/24 16:35:12 by lmajerus          #+#    #+#             */
+/*   Updated: 2022/01/24 17:20:06 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int ac, char **av)
+int	main(int ac, char *av[])
 {
 	t_glob	g;
 
 	if (ac != 5 && ac != 6)
-		return (error("Invalid # of arg"));
-	if (init_all(av, &g))
-		return (error("Parsing or initializing issue"));
-	if (philo(&g))
-		return (error("Could not create threads"));
-	return (0);
+		return (error("Error : invalid # of arg.\n"));
+	if (init_all(&g, av))
+		return (error("Error : Initializing or parsing issue.\n"));
 }
