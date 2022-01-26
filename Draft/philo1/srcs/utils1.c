@@ -5,31 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/19 18:51:56 by lmajerus          #+#    #+#             */
-/*   Updated: 2022/01/21 13:32:08 by lmajerus         ###   ########.fr       */
+/*   Created: 2022/01/24 16:35:23 by lmajerus          #+#    #+#             */
+/*   Updated: 2022/01/24 20:30:07 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	time_diff(long long past, long long pres)
+void	print_status(char *str, t_glob *g, int id)
 {
-	return (pres - past);
+	pthread_mutex_lock(&g->writing);
+	if (!g->died)
+	{
+		printf("%ll ", time_diff(timestamp(), g->start_time));
+		printf("%i ", id);
+		printf("%s", str);
+	}
+	pthread_mutex_unlock(&g->writing);
+	return ;
 }
 
-void	ft_sleep(int time, t_glob *g)
+void	ft_usleep(t_glob *g, int time)
 {
-	long long	t;
-
-	t = timestamp();
-	while (!g->died && time_diff(t, timestamp()) <= time)
-		usleep(50);
-}
-
-int	error(char *str)
-{
-	write(2, "Error: ", 7);
-	write(2, str, ft_strlen(str));
-	write(2, "\n", 1);
-	return (19);
+	while (!g->died)
+	{
+		if (time < 0)
+			break ;
+		usleep(50)
+		time -= 50;
+	}
+	return ;
 }
