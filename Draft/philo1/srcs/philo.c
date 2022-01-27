@@ -5,74 +5,113 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 16:35:16 by lmajerus          #+#    #+#             */
-/*   Updated: 2022/01/24 20:54:43 by lmajerus         ###   ########.fr       */
+/*   Created: 2022/01/19 15:34:01 by lmajerus          #+#    #+#             */
+/*   Updated: 2022/01/27 15:51:50 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	philo_eat(t_philo philo, t_glob *g)
+static int	philo_eats(t_phil *phil, t_glob *g)
 {
-	pthread_mutex_lock(&g->forks[philo->l_fork]);
-	print_status("has taken a fork\n", g, philo->id);
+	if (pthread_mutex_lock(&g->forks[phil->l_fork]))
+		return (g->error[0] = 42);
+	if (print_status("has taken a fork\n", phil->id, g))
+		return (g->error[1] = 42);
 	if (phil->l_fork == phil->r_fork)
-		return ;
-	pthread_mutex_lock(&g->forks[philo->f_fork]);
-	print_status("has taken a fork\n", g, philo->id);
-	pthread_mutex_lock(&g->check);
-	print_status("is eating\n");
-	philo->t_last_meal = timestamp();
-	pthread_mutex_unlock(&g->check);
-	ft_usleep(g, g->t_eat);
-	philo->nb_ate++;
-	pthread_mutex_unlock(&g->forks[philo->l_fork]);
-	pthread_mutex_unlock(&g->forks[philo->r_fork]);
+		return (pthread_mutex_unlock(&g->forks[phil->l_fork]));
+	if (pthread_mutex_lock(&g->forks[phil->r_fork]))
+		return (g->error[2] = 42);
+	if (print_status("has taken a fork\n", phil->id, g))
+		return (g->error[3] = 42);
+	if (print_status("is eating\n", phil->id, g))
+		return (g->error[4] = 42);
+	phil->t_last_meal = timestamp();
+	ft_sleep(g->t_eat, g);
+	phil->nb_ate++;
+	if (pthread_mutex_unlock(&g->forks[phil->l_fork]))
+		return (g->error[5] = 42);
+	if (pthread_mutex_unlock(&g->forks[phil->r_fork]))
+		return (g->error[6] = 42);
+	return (0);
 }
 
-static void	*routine(void *p)
+static void	*routine(void *arg)
 {
-	t_philo	*philo;
+	t_phil	*phil;
 	t_glob	*g;
 
-	philo = (t_philo *)p;
-	g = philo->g;
-	if (philo->id % 2)
+	phil = (t_phil *)arg;
+	g = phil->g;
+	if (phil->id % 2)
 		usleep(15000);
-	while (!g->died)
+	while (!g->died && !g->ate_max)
 	{
-		philo_eat(philo, g);
-		if (g->done || phil->l_fork == phil->r_fork)
+		if (philo_eats(phil, g))
+			g->error[13] = 42;
+		if (phil->l_fork == phil->r_fork)
 			break ;
-		print_status("is sleeping\n", g, philo->id);
-		ft_usleep(g, g->t_sleep);
-		print_status("is thinking\n", g, philo->id);
+		if (print_status("is sleeping\n", phil->id, g))
+			g->error[7] = 42;
+		ft_sleep(g->t_sleep, g);
+		if (print_status("is thinking\n", phil->id, g))
+			g->error[8] = 42;
 	}
 	return (NULL);
 }
 
-static void	check_if_dead(t_glob *g, t_philo *p, int i)
+static int	check_if_dead(t_glob *g, t_phil *p, int i)
 {
-	while (!g->done)
+	while (!g->ate_max)
 	{
-		
+		i = 0;
+		while (i < g->nb_phil && !(g->died))
+		{
+			if (time_diff(p[i].t_last_meal, timestamp()) >= g->t_die)
+			{
+				if (print_status("died\n", i, g))
+					return (g->error[9] = 42);
+				g->died = 1;
+			}
+			i++;
+		}
+		if (g->died)
+			break ;
+		i = 0;
+		while (g->nb_max_eat != -1 && i < g->nb_phil
+			&& p[i].nb_ate >= g->nb_max_eat)
+			i++;
+		if (i == g->nb_phil)
+			g->ate_max = 1;
 	}
+	return (0);
 }
 
 int	philo(t_glob *g)
 {
-	size_t	i;
+	int		i;
+	t_phil	*phil;
 
 	i = 0;
-	g->start_time = timestamp();
-	while (i < g->nb_philo)
+	phil = g->phil;
+	g->first_timestamp = timestamp();
+	while (i < g->nb_phil)
 	{
-		if (pthread_create(&g->phil[i].thread_id, NULL, routine, g->phil[i]))
-			return (19);
-		
+		if (pthread_create(&phil[i].thread_id, NULL, routine, phil + i))
+			return (g->error[10] = 42);
+		phil[i].t_last_meal = timestamp();
 		i++;
 	}
-	check_if_dead(g, g->phil, i);
-	join_destroy(g, phil);
+	if (check_if_dead(g, g->phil, i))
+		return (g->error[11] = 42);
+	i = 0;
+	while (i < g->nb_phil)
+	{
+		if (pthread_join(phil[i].thread_id, NULL))
+			return (g->error[12] = 42);
+		i++;
+	}
+	if (mutex_destroy(g))
+		return (g->error[19] = 42);
 	return (0);
 }
