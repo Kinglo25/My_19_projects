@@ -1,7 +1,6 @@
-NAME		=	philo
+NAME		=	minishell
 
-SRCS		=	srcs/main.c srcs/init.c \
-				srcs/utils.c srcs/utils1.c srcs/philo.c
+SRCS		=	srcs/main.c srcs/utils.c
 
 OBJS		=	$(SRCS:c=o)
 
@@ -20,7 +19,7 @@ all:			$(OBJS) $(NAME)
 
 $(NAME):	$(OBJS)
 				@echo "Linking $^"
-				@cc $(CFLAGS) $^ -o $@ -lpthread 
+				@cc $(CFLAGS) $^ -o $@ -lreadline
 				@echo "Executable created!"
 clean:
 				@echo "Cleaning objects..."

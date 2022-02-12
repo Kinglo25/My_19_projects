@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 13:52:07 by lmajerus          #+#    #+#             */
-/*   Updated: 2022/01/19 21:12:10 by lmajerus         ###   ########.fr       */
+/*   Updated: 2022/02/02 16:15:51 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ long long	timestamp(void)
 	return ((t.tv_sec * 1000) + (t.tv_usec / 1000));
 }
 
-void	print_status(char *str, int id, t_glob *g)
+int	print_status(char *str, int id, t_glob *g)
 {
 	pthread_mutex_lock(&g->writing);
 	if (!g->died)
@@ -72,5 +72,5 @@ void	print_status(char *str, int id, t_glob *g)
 		printf("%s", str);
 	}
 	pthread_mutex_unlock(&g->writing);
-	return ;
+	return (0);
 }

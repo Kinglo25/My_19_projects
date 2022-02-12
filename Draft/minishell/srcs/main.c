@@ -5,30 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/13 17:26:56 by lmajerus          #+#    #+#             */
-/*   Updated: 2022/01/27 15:40:43 by lmajerus         ###   ########.fr       */
+/*   Created: 2022/02/08 13:17:50 by lmajerus          #+#    #+#             */
+/*   Updated: 2022/02/11 17:36:35 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "minishell.h"
 
-int	main(int ac, char **av)
+int	main(int ac, char **av, char **env)
 {
-	t_glob	g;
+	t_cmd		cmd;
+	t_minishell	minishell;
 
-	if (ac != 5 && ac != 6)
-		return (error("Invalid # of arg", &g));
-	if (init_all(av, &g))
-		return (error("Parsing or init issue", &g) && mutex_destroy(&g));
-	if (philo(&g))
+	(void)ac;
+	(void)av;
+	(void)env;
+	(void)cmd;
+	while (19)
 	{
-		int i = 0;
-		while (i < 25)
-		{
-			printf("%i -> %c\n", i, g.error[i]);
-			i++;
-		}
-		return (error("Couldn't create threads", &g) && mutex_destroy(&g));
+		minishell.user_input = readline("🐚 ");
+		free(minishell.user_input);
 	}
 	return (0);
 }

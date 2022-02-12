@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 17:24:36 by lmajerus          #+#    #+#             */
-/*   Updated: 2022/01/19 21:25:54 by lmajerus         ###   ########.fr       */
+/*   Updated: 2022/02/02 15:53:17 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <sys/time.h>
 # include <fcntl.h>
 # include <pthread.h>
+# include <string.h>
 
 typedef struct s_phil
 {
@@ -42,8 +43,8 @@ typedef struct s_glob
 	int				ate_max;
 	long long		first_timestamp;
 	pthread_mutex_t	forks[200];
-	pthread_mutex_t	check;
 	pthread_mutex_t	writing;
+	pthread_mutex_t	check;
 	t_phil			phil[200];
 }				t_glob;
 
@@ -59,7 +60,8 @@ int			time_diff(long long past, long long pres);
 void		ft_sleep(int time, t_glob *g);
 long long	timestamp(void);
 int			error(char *str);
-void		print_status(char *str, int id, t_glob *g);
+int			print_status(char *str, int id, t_glob *g);
+int			mutex_destroy(t_glob *g);
 
 // philo.c
 

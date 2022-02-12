@@ -1,0 +1,35 @@
+@make -j$(nproc) $(NAME)
+	
+The -j params tells make to run multiple commands at the same time.
+
+Quoting is used to remove the special meaning of certain characters or words to the shell. 
+
+parser -> readline into char *input
+split line with ' ' as sep execpt if '' or ""
+when | new cmd -> chain list with all cmd use dup2 and pipe
+if < or > ->redirection == 1 -> open(file) && dup2
+echo test
+bonjour>file2
+
+int main
+
+
+
+echo test hello there | wc -l
+
+echo
+test
+hello
+there ->still echo's input
+| -> separateur !!! like < or > or even << & >> 
+wc
+-l
+
+echo test "| wc -l"
+
+echo
+test
+| wc -l -> here the pipe isnt interpreted as a sep since it's in a string!
+
+
+when > is encountered file is created 

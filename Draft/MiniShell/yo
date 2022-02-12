@@ -1,4 +1,0 @@
-all:
-	@make -j$(nproc) $(NAME)
-	
-The -j params tells make to run multiple commands at the same time.
