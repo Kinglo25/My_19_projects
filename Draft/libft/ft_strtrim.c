@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmajerus <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 16:00:46 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/02/11 16:02:00 by lmajerus         ###   ########.fr       */
+/*   Updated: 2022/03/07 15:22:41 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	ft_is_in_set(char c, char const *set)
 	return (0);
 }
 
-char		*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	start;
 	size_t	end;
@@ -42,7 +42,8 @@ char		*ft_strtrim(char const *s1, char const *set)
 		start++;
 	while (end > start && ft_is_in_set(s1[end - 1], set))
 		end--;
-	if (!(new = malloc(sizeof(*s1) * (end - start + 1))))
+	new = malloc(sizeof(*s1) * (end - start + 1));
+	if (!new)
 		return (NULL);
 	while (start < end)
 		new[i++] = s1[start++];

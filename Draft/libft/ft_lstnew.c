@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 15:31:08 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/10/05 14:55:17 by lmajerus         ###   ########.fr       */
+/*   Updated: 2022/03/02 13:01:21 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_list	*ft_lstnew(void *content)
 {
 	t_list	*new;
 
-	new = malloc(sizeof(t_list));
+	new = malloc(sizeof(t_list *));
 	if (!new)
 		return (NULL);
 	new->content = content;

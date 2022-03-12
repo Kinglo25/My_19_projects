@@ -1,6 +1,7 @@
 NAME		=	minishell
 
-SRCS		=	srcs/main.c srcs/utils.c
+SRCS		=	srcs/main.c srcs/ft_split.c srcs/ft_strtrim.c \
+				srcs/parser.c srcs/utils.c
 
 OBJS		=	$(SRCS:c=o)
 
