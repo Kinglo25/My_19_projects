@@ -1,0 +1,3 @@
+[submodule "Draft/CPP_modules/CPP_Piscine"]
+	path = Draft/CPP_modules/CPP_Piscine
+	url = https://github.com/goffauxs/CPP_Piscine.git
