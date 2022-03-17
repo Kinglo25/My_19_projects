@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 16:06:36 by lmajerus          #+#    #+#             */
-/*   Updated: 2022/03/17 17:13:26 by lmajerus         ###   ########.fr       */
+/*   Updated: 2022/03/17 18:48:14 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ PhoneBook::~PhoneBook()
 
 void	PhoneBook::set_contact(Contact contact)
 {
-	this->_contact[this->_count] = contact;
+	this->_contact[this->_count % 8] = contact;
 	this->_count++;
-	this->_count %= 8;
 }
 
 int		PhoneBook::get_count() const

@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 16:07:16 by lmajerus          #+#    #+#             */
-/*   Updated: 2022/03/17 14:39:58 by lmajerus         ###   ########.fr       */
+/*   Updated: 2022/03/17 17:44:07 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void		Contact::set_first_name()
 	{
 		std::cout << "First name (*^▽^*) : ";
 		std::getline(std::cin, input);
-		if (input != "")
+		if (!input.empty())
 			break ;
 		std::cout << "You need to type something, silly ! ﾍ(=￣∇￣)ﾉ" << std::endl;
 	}
@@ -46,7 +46,7 @@ void		Contact::set_last_name()
 	{
 		std::cout << "Last name ≧(´▽｀)≦ : ";
 		std::getline(std::cin, input);
-		if (input != "")
+		if (!input.empty())
 			break ;
 		std::cout << "You need to type something, silly ! ﾍ(=￣∇￣)ﾉ" << std::endl;
 	}
@@ -62,7 +62,7 @@ void		Contact::set_nickname()
 	{
 		std::cout << "Nickname ☜(⌒▽⌒)☞ : ";
 		std::getline(std::cin, input);
-		if (input != "")
+		if (!input.empty())
 			break ;
 		std::cout << "You need to type something, silly ! ﾍ(=￣∇￣)ﾉ" << std::endl;
 	}
@@ -78,7 +78,7 @@ void		Contact::set_phone_number()
 	{
 		std::cout << "(•ˇ‿ˇ•)-→ Phone Number : ";
 		std::getline(std::cin, input);
-		if (input != "")
+		if (!input.empty())
 			break ;
 		std::cout << "You need to type something, silly ! ﾍ(=￣∇￣)ﾉ" << std::endl;
 	}
@@ -94,7 +94,7 @@ void		Contact::set_darkest_secret()
 	{
 		std::cout << "Darkest secret !(•̀ᴗ•́)و ̑̑ : ";
 		std::getline(std::cin, input);
-		if (input != "")
+		if (!input.empty())
 			break ;
 		std::cout << "You need to type something, silly ! ﾍ(=￣∇￣)ﾉ" << std::endl;
 	}
