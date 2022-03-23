@@ -6,10 +6,11 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 21:26:31 by lmajerus          #+#    #+#             */
-/*   Updated: 2022/03/22 22:12:27 by lmajerus         ###   ########.fr       */
+/*   Updated: 2022/03/23 17:16:52 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
 #ifndef HUMAN_B_HPP
 # define HUMAN_B_HPP
 
@@ -21,13 +22,15 @@ class HumanB
 private:
 
 	std::string	_name;
-	Weapon		_weapon;
+	Weapon*		_weapon;
 
 public:
 
 	HumanB(std::string name);
 	~HumanB();
 
-	void	set_weapon(Weapon weapon);
+	void	set_weapon(Weapon& weapon);
 	void	attack();
 };
+
+#endif
