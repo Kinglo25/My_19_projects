@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.cpp                                           :+:      :+:    :+:   */
+/*   Zombies.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 16:30:40 by lmajerus          #+#    #+#             */
-/*   Updated: 2022/03/17 16:36:34 by lmajerus         ###   ########.fr       */
+/*   Created: 2022/03/22 17:52:34 by lmajerus          #+#    #+#             */
+/*   Updated: 2022/03/22 19:43:40 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string>
-#include <iostream>
-#include <iomanip>
+#include "Zombie.hpp"
 
-int main()
+Zombie::Zombie(std::string name)
+				: _name(name)
 {
-	std::cout << std::left << std::setw(10) << std::setfill('.');
-	std::cout << 777777777 << std::endl;
+}
+
+Zombie::~Zombie(void)
+{
+	std::cout << this->_name << "'s head has exploded, good ridance !" << std::endl;
+}
+
+void	Zombie::announce(void) const
+{
+	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }

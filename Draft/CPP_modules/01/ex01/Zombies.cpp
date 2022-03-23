@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Zombies.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/11 21:15:16 by lmajerus          #+#    #+#             */
-/*   Updated: 2022/03/18 12:07:14 by lmajerus         ###   ########.fr       */
+/*   Created: 2022/03/22 17:52:34 by lmajerus          #+#    #+#             */
+/*   Updated: 2022/03/22 20:35:20 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#include "Zombie.hpp"
 
-# include <iostream>
-# include <iomanip>
-# include <string>
-# include <Contact.hpp>
-
-class PhoneBook
+Zombie::Zombie()
 {
-public:
-		
-	PhoneBook();
-	~PhoneBook();
+}
 
-	void	set_contact(Contact contact);
-	
-	int		get_count() const;
-	Contact	get_contact(int index) const; 
+Zombie::~Zombie(void)
+{
+	std::cout << this->_name << "'s head has exploded, good ridance !" << std::endl;
+}
 
-private:
-	int			_count;
-	Contact 	_contact[8];
-};
+void	Zombie::announce(void) const
+{
+	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
+}
 
-#endif
+void	Zombie::set_name(std::string name)
+{
+	this->_name = name;
+}

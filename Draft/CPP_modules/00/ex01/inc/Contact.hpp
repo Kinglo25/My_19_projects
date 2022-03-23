@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/12 12:46:24 by lmajerus          #+#    #+#             */
-/*   Updated: 2022/03/17 14:34:31 by lmajerus         ###   ########.fr       */
+/*   Updated: 2022/03/18 12:07:14 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,12 @@ public:
 	Contact();
 	~Contact();
 
-// Setters
 	void		set_first_name();
 	void		set_last_name();
 	void		set_nickname();
 	void		set_phone_number();
 	void		set_darkest_secret();
 
-// Getters
 	std::string	get_first_name() const;
 	std::string	get_last_name() const;
 	std::string	get_nickname() const;

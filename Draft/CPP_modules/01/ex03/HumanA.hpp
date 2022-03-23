@@ -1,38 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/11 21:15:16 by lmajerus          #+#    #+#             */
-/*   Updated: 2022/03/18 12:07:14 by lmajerus         ###   ########.fr       */
+/*   Created: 2022/03/22 21:26:26 by lmajerus          #+#    #+#             */
+/*   Updated: 2022/03/22 22:12:26 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#ifndef HUMAN_A_HPP
+# define HUMAN_A_HPP
 
-# include <iostream>
-# include <iomanip>
-# include <string>
-# include <Contact.hpp>
+#include "Weapon.hpp"
 
-class PhoneBook
+class HumanA
 {
-public:
-		
-	PhoneBook();
-	~PhoneBook();
-
-	void	set_contact(Contact contact);
-	
-	int		get_count() const;
-	Contact	get_contact(int index) const; 
-
 private:
-	int			_count;
-	Contact 	_contact[8];
-};
 
-#endif
+	std::string	_name;
+	Weapon		_weapon;
+
+public:
+
+	HumanA(std::string name, Weapon weapon);
+	~HumanA();
+
+	void	attack();
+
+};

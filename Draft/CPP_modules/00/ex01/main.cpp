@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 21:16:42 by lmajerus          #+#    #+#             */
-/*   Updated: 2022/03/17 19:39:53 by lmajerus         ###   ########.fr       */
+/*   Updated: 2022/03/18 11:19:44 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,10 @@ void	add_contact(PhoneBook *Pb)
 
 std::string	truncate(std::string str)
 {
-	char buffer[2048];
 
-	if (str.copy(buffer, str.length(), 0) >= 10)
+	if (str.length() >= 10)
 	{
-		buffer[9] = '.';
-		buffer[10] = '\0';
-		return (buffer);
+		str = str.substr(0 , 9) + ".";
 	}
 	return (str);
 	
