@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/05 17:04:46 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/03/10 14:34:44 by lmajerus         ###   ########.fr       */
+/*   Updated: 2022/04/15 13:40:24 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void		ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-int			find_d_len(long x)
+int	find_d_len(long x)
 {
 	if (x < 10)
 		return (1);
