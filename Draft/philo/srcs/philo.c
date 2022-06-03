@@ -6,7 +6,7 @@
 /*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/19 15:34:01 by lmajerus          #+#    #+#             */
-/*   Updated: 2022/02/02 16:27:30 by lmajerus         ###   ########.fr       */
+/*   Updated: 2022/05/16 18:11:35 by lmajerus         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static int	philo_eats(t_phil *phil, t_glob *g)
 		return (42);
 	if (pthread_mutex_unlock(&g->forks[phil->r_fork]))
 		return (42);
-	usleep(100);
 	return (0);
 }
 
@@ -49,7 +48,7 @@ static void	*routine(void *arg)
 	phil = (t_phil *)arg;
 	g = phil->g;
 	if (phil->id % 2)
-		usleep(15000);
+		usleep(1500);
 	while (!g->died && !g->ate_max)
 	{
 		philo_eats(phil, g);
