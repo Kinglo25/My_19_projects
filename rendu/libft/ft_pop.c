@@ -1,29 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_push.c                                          :+:      :+:    :+:   */
+/*   ft_pop.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Loic Majerus <loic.majerus@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/01 15:31:17 by Loic Majeru       #+#    #+#             */
-/*   Updated: 2022/10/01 17:16:49 by Loic Majeru      ###   ########.fr       */
+/*   Created: 2022/10/01 17:04:22 by Loic Majeru       #+#    #+#             */
+/*   Updated: 2022/10/01 17:15:37 by Loic Majeru      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    ft_push(t_node **head, int data)
+int ft_pop(t_node **head)
 {
-    t_node *newNode;
+    t_node *tmp;
+    int     buff;
 
-    newNode = malloc(sizeof(t_node));
-    if (!newNode)
+    if (*head == NULL)
     {
-        printf("Stack overflow\n");
+        printf("Stack underflow\n");
         exit(0);
     }
-    newNode->data = data;
-    newNode->next = *head;
-    *head = newNode;
-    return;
+    tmp = (*head)->next;
+    buff = (*head)->data;
+    free(*head);
+    *head = tmp;
+    return (buff);
 }

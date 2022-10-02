@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmajerus <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: Loic Majerus <loic.majerus@gmail.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/11 16:05:21 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/02/11 16:07:57 by lmajerus         ###   ########.fr       */
+/*   Updated: 2022/10/01 17:16:42 by Loic Majeru      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,23 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 
 typedef struct	s_list
 {
 	void			*content;
 	struct s_list	*next;
 }				t_list;
+
+typedef struct	s_node
+{
+	int			data;
+	struct s_node	*next;
+}				t_node;
+
+int				ft_pop(t_node **head);
+
+void    		ft_push(t_node **head, int data);
 
 void			*ft_memset(void *s, int c, size_t n);
 
