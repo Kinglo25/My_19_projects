@@ -53,7 +53,7 @@ void	erase_a_line(char *s)
 	return ;
 }
 
-int		error_free(char **s, int x)
+int		error_free(char * line, char **s, int x)
 {
 	if (s)
 	{
@@ -65,6 +65,7 @@ int		error_free(char **s, int x)
 		}
 		if (x == -1)
 		{
+			free(line);
 			free(*s);
 			*s = NULL;
 			return (-1);
@@ -73,31 +74,47 @@ int		error_free(char **s, int x)
 	return (19);
 }
 
-int		get_next_line(int fd, char **line)
+char*		get_next_line(int fd)
 {
 	int				rv;
 	static char		*save;
 	char			buff[BUFFER_SIZE + (rv = 1)];
 	char			*tmp;
+	char			*line = NULL;
 
-	if (fd < 0 || fd >= OPEN_MAX || !line || BUFFER_SIZE <= 0)
-		return (-1);
+	if (fd < 0 || fd >= OPEN_MAX || BUFFER_SIZE <= 0)
+		return (NULL);
 	while (!ft_strchr(save, '\n') && (rv = read(fd, buff, BUFFER_SIZE)) > 0)
 	{
 		buff[rv] = '\0';
 		tmp = save;
 		if (!(save = ft_free_strjoin(tmp, buff)))
-			return (error_free(&save, -1));
+			return (error_free(line, &save, -1), NULL);
 	}
 	if (rv < 0)
-		return (error_free(&save, -1));
-	if (ft_strchr(save, '\n'))
+		return (error_free(line, &save, -1), NULL);
+	if (ft_strchr(save, '\n') && *save != '\n')
 	{
-		if (!(*line = ft_strdup(save)))
-			return (error_free(&save, -1));
-		return (1);
+		if (!(line = ft_strdup(save)))
+			return (error_free(line, &save, -1), NULL);
+		return (line);
 	}
-	if (!(*line = ft_strdup(save)))
-		return (error_free(&save, -1));
-	return (error_free(&save, 0));
+	if (!save)
+		return NULL;
+	if (!(line = ft_strdup(save)))
+		return (error_free(line, &save, -1), NULL);
+	return (error_free(NULL, &save, 0), line);
+}
+
+int main(void)
+{
+	char *m;
+	int fd = open("test.txt", O_RDONLY);
+	printf("%d\n", fd);
+	while ((m = get_next_line(fd)) && m)
+	{
+		printf("%s\n", m);
+		free(m);
+	}
+	free(m);
 }

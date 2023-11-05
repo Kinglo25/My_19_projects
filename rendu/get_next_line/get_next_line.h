@@ -13,11 +13,15 @@
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+# define OPEN_MAX 2048
+# define BUFFER_SIZE 2048
 # include <limits.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
+# include <fcntl.h>
 
-int		get_next_line(const int fd, char **line);
+char*	get_next_line(const int fd);
 
 char	*ft_strchr(const char *s, int c);
 
@@ -27,7 +31,7 @@ void	erase_a_line(char *s);
 
 char	*ft_free_strjoin(char *s1, char *s2);
 
-int		error_free(char **s, int x);
+int		error_free(char * line, char **s, int x);
 
 char	*ft_strdup(char *s);
 
