@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonathan <jonathan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/19 15:30:52 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/02/24 13:48:58 by lmajerus         ###   ########.fr       */
+/*   Updated: 2023/11/05 13:12:21 by jonathan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,10 @@ char	*ft_strdup(char *s)
 	char	*new;
 
 	i = 0;
-	if (!s)
-	{
-		if (!(new = malloc(i + 1)))
-			return (NULL);
-		new[i] = '\0';
-		return (new);
-	}
 	while (s[i] && s[i] != '\n')
 		i++;
-	if (!(new = malloc(i + 1)))
+	new = malloc(i + 2);
+	if (!new)
 		return (NULL);
 	i = 0;
 	while (s[i] && s[i] != '\n')
@@ -64,6 +58,8 @@ char	*ft_strdup(char *s)
 		new[i] = s[i];
 		i++;
 	}
+	if (s[i])
+		new[i++] = '\n';
 	new[i] = '\0';
 	erase_a_line(s);
 	return (new);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmajerus <lmajerus@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jonathan <jonathan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/02/15 14:42:59 by lmajerus          #+#    #+#             */
-/*   Updated: 2021/02/24 13:49:17 by lmajerus         ###   ########.fr       */
+/*   Updated: 2023/11/05 21:44:11 by jonathan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ char	*ft_free_strjoin(char *s1, char *s2)
 	size_t	i;
 	size_t	j;
 
-	if (!(s3 = malloc(sizeof(*s1) * (ft_strlen(s1) + ft_strlen(s2) + 1))))
+	s3 = malloc(sizeof(*s1) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!s3)
 		return (NULL);
 	i = 0;
 	j = 0;
@@ -42,7 +43,8 @@ void	erase_a_line(char *s)
 	size_t	i;
 
 	i = 0;
-	if (!(end_of_line = ft_strchr(s, '\n')))
+	end_of_line = ft_strchr(s, '\n');
+	if (!end_of_line)
 		return ;
 	while (end_of_line[(i + 1)])
 	{
@@ -53,7 +55,7 @@ void	erase_a_line(char *s)
 	return ;
 }
 
-int		error_free(char * line, char **s, int x)
+int	error_free(char *line, char **s, int x)
 {
 	if (s)
 	{
@@ -74,47 +76,49 @@ int		error_free(char * line, char **s, int x)
 	return (19);
 }
 
-char*		get_next_line(int fd)
+char	*get_next_line(int fd)
 {
 	int				rv;
 	static char		*save;
-	char			buff[BUFFER_SIZE + (rv = 1)];
-	char			*tmp;
-	char			*line = NULL;
+	char			buff[BUFFER_SIZE + 1];
+	char			*line;
 
+	line = NULL;
+	rv = 1;
 	if (fd < 0 || fd >= OPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
-	while (!ft_strchr(save, '\n') && (rv = read(fd, buff, BUFFER_SIZE)) > 0)
+	while (!ft_strchr(save, '\n') && rv > 0)
 	{
+		rv = read(fd, buff, BUFFER_SIZE);//here bug
 		buff[rv] = '\0';
-		tmp = save;
-		if (!(save = ft_free_strjoin(tmp, buff)))
+		save = ft_free_strjoin(save, buff);
+		if (!save)
 			return (error_free(line, &save, -1), NULL);
 	}
 	if (rv < 0)
 		return (error_free(line, &save, -1), NULL);
-	if (ft_strchr(save, '\n') && *save != '\n')
+	if (ft_strchr(save, '\n'))
 	{
 		if (!(line = ft_strdup(save)))
 			return (error_free(line, &save, -1), NULL);
 		return (line);
 	}
-	if (!save)
-		return NULL;
+	if (!ft_strlen(save))
+		return (error_free(NULL, &save, 0), NULL);
 	if (!(line = ft_strdup(save)))
 		return (error_free(line, &save, -1), NULL);
 	return (error_free(NULL, &save, 0), line);
 }
 
-int main(void)
-{
-	char *m;
-	int fd = open("test.txt", O_RDONLY);
-	printf("%d\n", fd);
-	while ((m = get_next_line(fd)) && m)
-	{
-		printf("%s\n", m);
-		free(m);
-	}
-	free(m);
-}
+// int main(void)
+// {
+// 	char *m;
+// 	int fd = open("test.txt", O_RDONLY);
+// 	printf("%d\n", fd);
+// 	while ((m = get_next_line(fd)) && m)
+// 	{
+// 		printf("%s\n", m);
+// 		free(m);
+// 	}
+// 	free(m);
+// }
